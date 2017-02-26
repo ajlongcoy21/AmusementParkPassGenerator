@@ -12,6 +12,10 @@
 		3EDC4B2F1E638F980094D276 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3EDC4B2D1E638F980094D276 /* Main.storyboard */; };
 		3EDC4B311E638F980094D276 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3EDC4B301E638F980094D276 /* Assets.xcassets */; };
 		3EDC4B341E638F980094D276 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3EDC4B321E638F980094D276 /* LaunchScreen.storyboard */; };
+		3EDC4B3C1E63920A0094D276 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDC4B3B1E63920A0094D276 /* Person.swift */; };
+		3EDC4B3E1E6396EF0094D276 /* Guest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDC4B3D1E6396EF0094D276 /* Guest.swift */; };
+		3EDC4B401E6398130094D276 /* AreaAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDC4B3F1E6398130094D276 /* AreaAccess.swift */; };
+		3EDC4B421E63985F0094D276 /* RideAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDC4B411E63985F0094D276 /* RideAccess.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +26,10 @@
 		3EDC4B301E638F980094D276 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3EDC4B331E638F980094D276 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3EDC4B351E638F980094D276 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3EDC4B3B1E63920A0094D276 /* Person.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
+		3EDC4B3D1E6396EF0094D276 /* Guest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Guest.swift; sourceTree = "<group>"; };
+		3EDC4B3F1E6398130094D276 /* AreaAccess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AreaAccess.swift; sourceTree = "<group>"; };
+		3EDC4B411E63985F0094D276 /* RideAccess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RideAccess.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +68,10 @@
 				3EDC4B301E638F980094D276 /* Assets.xcassets */,
 				3EDC4B321E638F980094D276 /* LaunchScreen.storyboard */,
 				3EDC4B351E638F980094D276 /* Info.plist */,
+				3EDC4B3B1E63920A0094D276 /* Person.swift */,
+				3EDC4B3D1E6396EF0094D276 /* Guest.swift */,
+				3EDC4B3F1E6398130094D276 /* AreaAccess.swift */,
+				3EDC4B411E63985F0094D276 /* RideAccess.swift */,
 			);
 			path = AmusementParkPassGenerator;
 			sourceTree = "<group>";
@@ -137,7 +149,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3EDC4B401E6398130094D276 /* AreaAccess.swift in Sources */,
+				3EDC4B421E63985F0094D276 /* RideAccess.swift in Sources */,
+				3EDC4B3C1E63920A0094D276 /* Person.swift in Sources */,
 				3EDC4B2C1E638F980094D276 /* ViewController.swift in Sources */,
+				3EDC4B3E1E6396EF0094D276 /* Guest.swift in Sources */,
 				3EDC4B2A1E638F980094D276 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
