@@ -14,9 +14,9 @@ protocol Person
     var lastName: String? { get }
     var streetAddress: String? { get set }
     var city: String? { get set }
+    var state: String? { get set }
     var zipCode: Int? { get set }
     var birthday: Date? { get }
-    var visitDay: Date? { get set }
     var company: String? { get set }
     
 }
