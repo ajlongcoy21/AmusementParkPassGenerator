@@ -38,7 +38,7 @@ class Guest: Person
     var birthday: Date?
     var company: String?
     var guestType: GuestType
-    var guestPass: Pass
+    var pass: Pass
     
     init(firstName: String?, lastName: String?, streetAddress: String?, city: String?, state: String?, zipCode: Int?, birthday: Date?, company: String?, guestType: GuestType)
     {
@@ -51,8 +51,8 @@ class Guest: Person
         self.birthday = birthday
         self.company = company
         self.guestType = guestType
-        self.guestPass = Pass()
-        self.guestPass.updatePass(guestType: guestType, employeeType: nil)
+        self.pass = Pass()
+        self.pass.updatePass(entrantType: guestType)
     }
     
     convenience init?(guestType: GuestType, birthday: Date?) throws

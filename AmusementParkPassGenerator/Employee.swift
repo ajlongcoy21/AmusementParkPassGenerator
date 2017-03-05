@@ -100,7 +100,7 @@ class Employee: Person
     var birthday: Date?
     var company: String?
     var employeeType: EmployeeType
-    var employeePass: Pass
+    var pass: Pass
     
     init(firstName: String?, lastName: String?, streetAddress: String?, city: String?, state: String?, zipCode: Int?, birthday: Date?, company: String?, employeeType: EmployeeType)
     {
@@ -112,8 +112,8 @@ class Employee: Person
         self.birthday = birthday
         self.company = company
         self.employeeType = employeeType
-        self.employeePass = Pass()
-        self.employeePass.updatePass(guestType: nil, employeeType: employeeType)
+        self.pass = Pass()
+        self.pass.updatePass(entrantType: employeeType)
     }
     
     convenience init?(employeeType: EmployeeType, firstName: String?, lastName: String?, streetAddress: String?, city: String?, state: String?, zipCode: Int?, birthday: Date?) throws

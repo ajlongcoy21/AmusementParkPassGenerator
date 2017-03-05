@@ -27,8 +27,10 @@ struct Pass
 {
     var rideAccessArray: [RideAccess] = []
     var areaAccessArray: [AreaAccess] = []
+    var discountFood: Int = 0
+    var discountMerchandise: Int = 0
     
-    mutating func updatePass(guestType: GuestType?, employeeType: EmployeeType?)
+    mutating func updatePass(entrantType: Optional<Any>)
     {
         rideAccessArray = []
         areaAccessArray = []
@@ -36,10 +38,10 @@ struct Pass
         areaAccessArray.append(AreaAccess.amusementArea)
         rideAccessArray.append(RideAccess.allRides)
         
-        if guestType != nil
+        if entrantType is GuestType
         {
             
-            switch guestType!
+            switch entrantType as! GuestType
             {
             case .classic:
                 break
@@ -47,12 +49,17 @@ struct Pass
                 break
             case .vip:
                 rideAccessArray.append(RideAccess.skipLines)
+                discountFood = 10
+                discountMerchandise = 20
             }
         }
         
-        if employeeType != nil
+        if entrantType is EmployeeType
         {
-            switch employeeType!
+            discountFood = 15
+            discountMerchandise = 25
+            
+            switch entrantType as! EmployeeType
             {
             case .foodServices:
                 areaAccessArray.append(AreaAccess.kitchenArea)
@@ -63,6 +70,7 @@ struct Pass
                 areaAccessArray.append(AreaAccess.rideControlArea)
                 areaAccessArray.append(AreaAccess.maintenanceArea)
             case .manager:
+                discountFood = 25
                 areaAccessArray.append(AreaAccess.kitchenArea)
                 areaAccessArray.append(AreaAccess.rideControlArea)
                 areaAccessArray.append(AreaAccess.maintenanceArea)

@@ -45,16 +45,80 @@ class AmusementPark
         }
     }
     
+    func swipePass(for entrant: Optional<Any>, at area: AreaAccess?, at ride: RideAccess?) -> Bool
+    {
+        
+        if area == nil && ride == nil
+        {
+                print("No ride or area access requested")
+                return false
+        }
+        else if ride == nil
+        {
+            switch entrant
+            {
+                case is Guest:
+                    for eachArea in (entrant as! Guest).pass.areaAccessArray
+                    {
+                        if eachArea == area
+                        {
+                            return true
+                        }
+                    }
+                case is Employee:
+                    for eachArea in (entrant as! Employee).pass.areaAccessArray
+                    {
+                        if eachArea == area
+                        {
+                            return true
+                        }
+                    }
+                default:
+                    break
+            }
+        }
+        else if area == nil
+        {
+            switch entrant
+            {
+            case is Guest:
+                for eachRide in (entrant as! Guest).pass.rideAccessArray
+                {
+                    if eachRide == ride
+                    {
+                        return true
+                    }
+                }
+            case is Employee:
+                for eachRide in (entrant as! Employee).pass.rideAccessArray
+                {
+                    if eachRide == ride
+                    {
+                        return true
+                    }
+                }
+            default:
+                break
+            }
+        }
+        else
+        {
+            return false
+        }
+        
+        return false
+    }
+    
     func displayAreaAccess()
     {
         for guest in guestsArray
         {
-            guest.guestPass.printAreaAccess()
+            guest.pass.printAreaAccess()
         }
         
         for employee in employeeArray
         {
-            employee.employeePass.printAreaAccess()
+            employee.pass.printAreaAccess()
         }
     }
     
@@ -62,12 +126,12 @@ class AmusementPark
     {
         for guest in guestsArray
         {
-            guest.guestPass.printRideAccess()
+            guest.pass.printRideAccess()
         }
         
         for employee in employeeArray
         {
-            employee.employeePass.printRideAccess()
+            employee.pass.printRideAccess()
         }
     }
     
