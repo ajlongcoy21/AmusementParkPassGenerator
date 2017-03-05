@@ -8,10 +8,17 @@
 
 import Foundation
 
+/**************************************************************************
+ Protocol Person
+ 
+ Defines what requirements are needed in a person
+ 
+**************************************************************************/
+
 protocol Person
 {
-    var firstName: String? { get }
-    var lastName: String? { get }
+    var firstName: String? { get set }
+    var lastName: String? { get set }
     var streetAddress: String? { get set }
     var city: String? { get set }
     var state: String? { get set }
