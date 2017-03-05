@@ -105,7 +105,7 @@ class AmusementPark
     }
     
     /**************************************************************************
-     swipePass
+     accessSwipePass
      
      This function will swipe the pass of the entrant trying to enter the area
      or ride. If they have the right type of membership, they will be granted
@@ -121,7 +121,7 @@ class AmusementPark
      
      **************************************************************************/
     
-    func swipePass(for entrant: Optional<Any>, at area: AreaAccess?, at ride: RideAccess?) -> Bool
+    func accessSwipePass(for entrant: Optional<Any>, at area: AreaAccess?, at ride: RideAccess?) -> Bool
     {
         // Check to make sure they are requesting access to an area or ride
         
@@ -191,6 +191,36 @@ class AmusementPark
         
         return false
     }
+    
+    /**************************************************************************
+     discountSwipePass
+     
+     This function will swipe the pass of the entrant trying to get 
+     a discount. It will return the discount that should be applied for the user.
+     
+     parameters:
+     entrant - Optional type so we can pass both guests and employees in
+     
+     Returns:
+     tuple (Int, Int)- food and merchandise discount
+     
+     **************************************************************************/
+    
+    func discountSwipePass(for entrant: Optional<Any>) -> (Int, Int)
+    {
+        
+        switch entrant // Look to see what type of entrant is requesting access
+        {
+        case is Guest:
+            return ((entrant as! Guest).pass.discountFood, (entrant as! Guest).pass.discountMerchandise)
+        case is Employee:
+            return ((entrant as! Employee).pass.discountFood, (entrant as! Employee).pass.discountMerchandise)
+        default:
+            return (-1,-1)
+        }
+    }
+            
+    
     
     /**************************************************************************
      displayAreaAccess

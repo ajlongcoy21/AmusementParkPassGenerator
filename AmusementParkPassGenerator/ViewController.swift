@@ -20,6 +20,7 @@ class ViewController: UIViewController
         // Do any additional setup after loading the view, typically from a nib.
 
         var myBool = false
+        var discounts: (food: Int,merchandise: Int) = (0,0)
         
         /**************************************************************************************************
         Guest Test Case
@@ -64,7 +65,7 @@ class ViewController: UIViewController
         for guest in amusementPark.guestsArray
         {
             print("\n\(guest.guestType)\n")
-            myBool = amusementPark.swipePass(for: guest, at: AreaAccess.amusementArea, at: nil)
+            myBool = amusementPark.accessSwipePass(for: guest, at: AreaAccess.amusementArea, at: nil)
             if myBool
             {
                 print("Access to \(AreaAccess.amusementArea) granted\n")
@@ -74,7 +75,7 @@ class ViewController: UIViewController
             {
                 print("Access to \(AreaAccess.amusementArea) denied\n")
             }
-            myBool = amusementPark.swipePass(for: guest, at: AreaAccess.kitchenArea, at: nil)
+            myBool = amusementPark.accessSwipePass(for: guest, at: AreaAccess.kitchenArea, at: nil)
             if myBool
             {
                 print("Access to \(AreaAccess.kitchenArea) granted\n")
@@ -84,7 +85,7 @@ class ViewController: UIViewController
             {
                 print("Access to \(AreaAccess.kitchenArea) denied\n")
             }
-            myBool = amusementPark.swipePass(for: guest, at: AreaAccess.maintenanceArea, at: nil)
+            myBool = amusementPark.accessSwipePass(for: guest, at: AreaAccess.maintenanceArea, at: nil)
             if myBool
             {
                 print("Access to \(AreaAccess.maintenanceArea) granted\n")
@@ -94,7 +95,7 @@ class ViewController: UIViewController
             {
                 print("Access to \(AreaAccess.maintenanceArea) denied\n")
             }
-            myBool = amusementPark.swipePass(for: guest, at: AreaAccess.officeArea, at: nil)
+            myBool = amusementPark.accessSwipePass(for: guest, at: AreaAccess.officeArea, at: nil)
             if myBool
             {
                 print("Access to \(AreaAccess.officeArea) granted\n")
@@ -104,7 +105,7 @@ class ViewController: UIViewController
             {
                 print("Access to \(AreaAccess.officeArea) denied\n")
             }
-            myBool = amusementPark.swipePass(for: guest, at: AreaAccess.rideControlArea, at: nil)
+            myBool = amusementPark.accessSwipePass(for: guest, at: AreaAccess.rideControlArea, at: nil)
             if myBool
             {
                 print("Access to \(AreaAccess.rideControlArea) granted\n")
@@ -130,7 +131,7 @@ class ViewController: UIViewController
         for guest in amusementPark.guestsArray
         {
             print("\n\(guest.guestType)\n")
-            myBool = amusementPark.swipePass(for: guest, at: nil, at: RideAccess.allRides)
+            myBool = amusementPark.accessSwipePass(for: guest, at: nil, at: RideAccess.allRides)
             if myBool
             {
                 print("Access to \(RideAccess.allRides) granted\n")
@@ -140,7 +141,7 @@ class ViewController: UIViewController
             {
                 print("Access to \(RideAccess.allRides) denied\n")
             }
-            myBool = amusementPark.swipePass(for: guest, at: nil, at: RideAccess.skipLines)
+            myBool = amusementPark.accessSwipePass(for: guest, at: nil, at: RideAccess.skipLines)
             if myBool
             {
                 print("Access to \(RideAccess.skipLines) granted\n")
@@ -150,6 +151,24 @@ class ViewController: UIViewController
             {
                 print("Access to \(RideAccess.skipLines) denied\n")
             }
+            
+        }
+        
+        /**************************************************************************************************
+         Guest Test Case
+         
+         Swipe Pass at register
+        
+         **************************************************************************************************/
+        
+        for guest in amusementPark.guestsArray
+        {
+            print("\nDiscounts for \(guest.guestType)\n")
+            
+            discounts = amusementPark.discountSwipePass(for: guest)
+            
+            print("Discount for food: \(discounts.food)\n")
+            print("Discount for merchandise: \(discounts.merchandise)\n")
             
         }
         
@@ -246,7 +265,7 @@ class ViewController: UIViewController
         for employee in amusementPark.employeeArray
         {
             print("\n\(employee.employeeType)\n")
-            myBool = amusementPark.swipePass(for: employee, at: AreaAccess.amusementArea, at: nil)
+            myBool = amusementPark.accessSwipePass(for: employee, at: AreaAccess.amusementArea, at: nil)
             if myBool
             {
                 print("Access to \(AreaAccess.amusementArea) granted\n")
@@ -256,7 +275,7 @@ class ViewController: UIViewController
             {
                 print("Access to \(AreaAccess.amusementArea) denied\n")
             }
-            myBool = amusementPark.swipePass(for: employee, at: AreaAccess.kitchenArea, at: nil)
+            myBool = amusementPark.accessSwipePass(for: employee, at: AreaAccess.kitchenArea, at: nil)
             if myBool
             {
                 print("Access to \(AreaAccess.kitchenArea) granted\n")
@@ -266,7 +285,7 @@ class ViewController: UIViewController
             {
                 print("Access to \(AreaAccess.kitchenArea) denied\n")
             }
-            myBool = amusementPark.swipePass(for: employee, at: AreaAccess.maintenanceArea, at: nil)
+            myBool = amusementPark.accessSwipePass(for: employee, at: AreaAccess.maintenanceArea, at: nil)
             if myBool
             {
                 print("Access to \(AreaAccess.maintenanceArea) granted\n")
@@ -276,7 +295,7 @@ class ViewController: UIViewController
             {
                 print("Access to \(AreaAccess.maintenanceArea) denied\n")
             }
-            myBool = amusementPark.swipePass(for: employee, at: AreaAccess.officeArea, at: nil)
+            myBool = amusementPark.accessSwipePass(for: employee, at: AreaAccess.officeArea, at: nil)
             if myBool
             {
                 print("Access to \(AreaAccess.officeArea) granted\n")
@@ -286,7 +305,7 @@ class ViewController: UIViewController
             {
                 print("Access to \(AreaAccess.officeArea) denied\n")
             }
-            myBool = amusementPark.swipePass(for: employee, at: AreaAccess.rideControlArea, at: nil)
+            myBool = amusementPark.accessSwipePass(for: employee, at: AreaAccess.rideControlArea, at: nil)
             if myBool
             {
                 print("Access to \(AreaAccess.rideControlArea) granted\n")
@@ -310,7 +329,7 @@ class ViewController: UIViewController
         for employee in amusementPark.employeeArray
         {
             print("\n\(employee.employeeType)\n")
-            myBool = amusementPark.swipePass(for: employee, at: nil, at: RideAccess.allRides)
+            myBool = amusementPark.accessSwipePass(for: employee, at: nil, at: RideAccess.allRides)
             if myBool
             {
                 print("Access to \(RideAccess.allRides) granted\n")
@@ -320,7 +339,7 @@ class ViewController: UIViewController
             {
                 print("Access to \(RideAccess.allRides) denied\n")
             }
-            myBool = amusementPark.swipePass(for: employee, at: nil, at: RideAccess.skipLines)
+            myBool = amusementPark.accessSwipePass(for: employee, at: nil, at: RideAccess.skipLines)
             if myBool
             {
                 print("Access to \(RideAccess.skipLines) granted\n")
@@ -330,6 +349,24 @@ class ViewController: UIViewController
             {
                 print("Access to \(RideAccess.skipLines) denied\n")
             }
+            
+        }
+        
+        /**************************************************************************************************
+         Employee Test Case
+         
+         Swipe Pass at register
+         
+         **************************************************************************************************/
+        
+        for employee in amusementPark.employeeArray
+        {
+            print("\nDiscounts for \(employee.employeeType)\n")
+            
+            discounts = amusementPark.discountSwipePass(for: employee)
+            
+            print("Discount for food: \(discounts.food)\n")
+            print("Discount for merchandise: \(discounts.merchandise)\n")
             
         }
     }
