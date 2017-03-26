@@ -11,7 +11,208 @@ import UIKit
 class ViewController: UIViewController
 {
 
+    @IBOutlet weak var guestButton: UIButton!
+    @IBOutlet weak var employeeButton: UIButton!
+    @IBOutlet weak var managerButton: UIButton!
+    @IBOutlet weak var vendorButton: UIButton!
+    
 
+
+    @IBOutlet weak var entrantButton1: UIButton!
+    @IBOutlet weak var entrantButton2: UIButton!
+    @IBOutlet weak var entrantButton3: UIButton!
+    @IBOutlet weak var entrantButton4: UIButton!
+    @IBOutlet weak var entrantButton5: UIButton!
+    
+    @IBOutlet weak var entrantView: UIStackView!
+    
+    
+    @IBAction func entrantTypeSelected(_ sender: UIButton)
+    {
+        //let buttonID = sender.currentTitle! as String
+        
+        switch sender.tag
+        {
+        case 0:
+            
+            UIView.animate(withDuration: 0.0001, animations:{
+                
+            sender.setTitleColor(UIColor.white, for: .normal)
+            
+            self.enableButtons()
+            self.unhideButtons()
+            self.makeButtonsGray()
+                
+            self.entrantButton1.setTitleColor(UIColor.white, for: .normal)
+                
+            self.entrantButton1.setTitle("Classic", for: .normal)
+            self.entrantButton2.setTitle("VIP", for: .normal)
+            self.entrantButton3.setTitle("Child", for: .normal)
+            self.entrantButton4.setTitle("Season Pass", for: .normal)
+            self.entrantButton5.setTitle("Senior", for: .normal)
+                
+            self.employeeButton.setTitleColor(UIColor.lightGray, for: .normal)
+            self.managerButton.setTitleColor(UIColor.lightGray, for: .normal)
+            self.vendorButton.setTitleColor(UIColor.lightGray, for: .normal)
+                
+            
+            })
+            
+        case 1:
+           
+            UIView.animate(withDuration: 0.0001, animations:{
+            
+            sender.setTitleColor(UIColor.white, for: .normal)
+            
+            self.enableButtons()
+            self.unhideButtons()
+            self.makeButtonsGray()
+                
+            self.entrantButton1.setTitleColor(UIColor.white, for: .normal)
+                
+            self.entrantButton1.setTitle("Food Services", for: .normal)
+            self.entrantButton2.setTitle("Ride Services", for: .normal)
+            self.entrantButton3.setTitle("Maintenance", for: .normal)
+            self.entrantButton4.setTitle("Contract", for: .normal)
+            
+            self.entrantButton5.isEnabled = false
+            self.entrantButton5.isHidden = true
+                
+            self.guestButton.setTitleColor(UIColor.lightGray, for: .normal)
+            self.managerButton.setTitleColor(UIColor.lightGray, for: .normal)
+            self.vendorButton.setTitleColor(UIColor.lightGray, for: .normal)
+            
+            })
+            
+        case 2:
+            
+            UIView.animate(withDuration: 0.0001, animations:{
+                
+                sender.setTitleColor(UIColor.white, for: .normal)
+                
+                self.enableButtons()
+                self.unhideButtons()
+                self.makeButtonsGray()
+                
+                self.entrantButton1.setTitleColor(UIColor.white, for: .normal)
+                
+                self.entrantButton1.setTitle("Senior", for: .normal)
+                self.entrantButton2.setTitle("General", for: .normal)
+                self.entrantButton3.setTitle("Shift", for: .normal)
+                
+                self.entrantButton4.isEnabled = false
+                self.entrantButton4.isHidden = true
+                self.entrantButton5.isEnabled = false
+                self.entrantButton5.isHidden = true
+                
+                self.employeeButton.setTitleColor(UIColor.lightGray, for: .normal)
+                self.guestButton.setTitleColor(UIColor.lightGray, for: .normal)
+                self.vendorButton.setTitleColor(UIColor.lightGray, for: .normal)
+                
+            })
+            
+        case 3:
+            
+            UIView.animate(withDuration: 0.0001, animations:{
+                
+                sender.setTitleColor(UIColor.white, for: .normal)
+                
+                self.enableButtons()
+                self.unhideButtons()
+                self.makeButtonsGray()
+                
+                self.entrantButton1.setTitleColor(UIColor.white, for: .normal)
+                
+                self.entrantButton1.setTitle("Acme", for: .normal)
+                self.entrantButton2.setTitle("Orkin", for: .normal)
+                self.entrantButton3.setTitle("Fedex", for: .normal)
+                self.entrantButton4.setTitle("NW Electrical", for: .normal)
+                
+                self.entrantButton5.isEnabled = false
+                self.entrantButton5.isHidden = true
+                
+                self.employeeButton.setTitleColor(UIColor.lightGray, for: .normal)
+                self.managerButton.setTitleColor(UIColor.lightGray, for: .normal)
+                self.guestButton.setTitleColor(UIColor.lightGray, for: .normal)
+                
+            })
+            
+        case 4:
+            
+            UIView.animate(withDuration: 0.0001, animations:{
+                
+                sender.setTitleColor(UIColor.white, for: .normal)
+                
+                self.entrantButton1.setTitleColor(UIColor.white, for: .normal)
+                self.entrantButton2.setTitleColor(UIColor.lightGray, for: .normal)
+                self.entrantButton3.setTitleColor(UIColor.lightGray, for: .normal)
+                self.entrantButton4.setTitleColor(UIColor.lightGray, for: .normal)
+                self.entrantButton5.setTitleColor(UIColor.lightGray, for: .normal)
+                
+            })
+            
+        case 5:
+            
+            UIView.animate(withDuration: 0.0001, animations:{
+                
+                sender.setTitleColor(UIColor.white, for: .normal)
+                
+                self.entrantButton1.setTitleColor(UIColor.lightGray, for: .normal)
+                self.entrantButton2.setTitleColor(UIColor.white, for: .normal)
+                self.entrantButton3.setTitleColor(UIColor.lightGray, for: .normal)
+                self.entrantButton4.setTitleColor(UIColor.lightGray, for: .normal)
+                self.entrantButton5.setTitleColor(UIColor.lightGray, for: .normal)
+                
+            })
+            
+        case 6:
+            
+            UIView.animate(withDuration: 0.0001, animations:{
+                
+                sender.setTitleColor(UIColor.white, for: .normal)
+                
+                self.entrantButton1.setTitleColor(UIColor.lightGray, for: .normal)
+                self.entrantButton2.setTitleColor(UIColor.lightGray, for: .normal)
+                self.entrantButton3.setTitleColor(UIColor.white, for: .normal)
+                self.entrantButton4.setTitleColor(UIColor.lightGray, for: .normal)
+                self.entrantButton5.setTitleColor(UIColor.lightGray, for: .normal)
+                
+            })
+            
+        case 7:
+            
+            UIView.animate(withDuration: 0.0001, animations:{
+                
+                sender.setTitleColor(UIColor.white, for: .normal)
+                
+                self.entrantButton1.setTitleColor(UIColor.lightGray, for: .normal)
+                self.entrantButton2.setTitleColor(UIColor.lightGray, for: .normal)
+                self.entrantButton3.setTitleColor(UIColor.lightGray, for: .normal)
+                self.entrantButton4.setTitleColor(UIColor.white, for: .normal)
+                self.entrantButton5.setTitleColor(UIColor.lightGray, for: .normal)
+                
+            })
+            
+        case 8:
+            
+            UIView.animate(withDuration: 0.0001, animations:{
+                
+                sender.setTitleColor(UIColor.white, for: .normal)
+                
+                self.entrantButton1.setTitleColor(UIColor.lightGray, for: .normal)
+                self.entrantButton2.setTitleColor(UIColor.lightGray, for: .normal)
+                self.entrantButton3.setTitleColor(UIColor.lightGray, for: .normal)
+                self.entrantButton4.setTitleColor(UIColor.lightGray, for: .normal)
+                self.entrantButton5.setTitleColor(UIColor.white, for: .normal)
+                
+            })
+            
+        default:
+            break
+        }
+        
+    }
+    
     var amusementPark = AmusementPark()
     
     override func viewDidLoad()
@@ -19,6 +220,8 @@ class ViewController: UIViewController
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
 
+        defaultSettings()
+        
         var myBool = false
         var discounts: (food: Int,merchandise: Int) = (0,0)
         
@@ -511,6 +714,62 @@ class ViewController: UIViewController
     {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func defaultSettings()
+    {
+        guestButton.setTitleColor(UIColor.white, for: .normal)
+        employeeButton.setTitleColor(UIColor.lightGray, for: .normal)
+        managerButton.setTitleColor(UIColor.lightGray, for: .normal)
+        vendorButton.setTitleColor(UIColor.lightGray, for: .normal)
+        
+        entrantButton1.setTitle("Classic", for: .normal)
+        entrantButton2.setTitle("VIP", for: .normal)
+        entrantButton3.setTitle("Child", for: .normal)
+        entrantButton4.setTitle("Season Pass", for: .normal)
+        entrantButton5.setTitle("Senior", for: .normal)
+        
+        entrantButton2.setTitleColor(UIColor.lightGray, for: .normal)
+        entrantButton3.setTitleColor(UIColor.lightGray, for: .normal)
+        entrantButton4.setTitleColor(UIColor.lightGray, for: .normal)
+        entrantButton5.setTitleColor(UIColor.lightGray, for: .normal)
+    }
+    
+    func enableButtons()
+    {
+        entrantButton1.isEnabled = true
+        entrantButton2.isEnabled = true
+        entrantButton3.isEnabled = true
+        entrantButton4.isEnabled = true
+        entrantButton5.isEnabled = true
+    }
+    
+    func unhideButtons()
+    {
+        entrantButton1.isHidden = false
+        entrantButton2.isHidden = false
+        entrantButton3.isHidden = false
+        entrantButton4.isHidden = false
+        entrantButton5.isHidden = false
+    }
+    
+    
+    func hideButtons()
+    {
+        entrantButton1.isHidden = true
+        entrantButton2.isHidden = true
+        entrantButton3.isHidden = true
+        entrantButton4.isHidden = true
+        entrantButton5.isHidden = true
+    }
+    
+    func makeButtonsGray()
+    {
+        self.entrantButton1.setTitleColor(UIColor.lightGray, for: .normal)
+        self.entrantButton2.setTitleColor(UIColor.lightGray, for: .normal)
+        self.entrantButton3.setTitleColor(UIColor.lightGray, for: .normal)
+        self.entrantButton4.setTitleColor(UIColor.lightGray, for: .normal)
+        self.entrantButton5.setTitleColor(UIColor.lightGray, for: .normal)
     }
 
 }
