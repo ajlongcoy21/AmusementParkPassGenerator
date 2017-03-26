@@ -21,6 +21,8 @@ enum EmployeeType: Int
     case rideServices
     case maintenance
     case manager
+    case contract
+    case vendor
 }
 
 /**************************************************************************
@@ -43,6 +45,11 @@ enum EmployeeError: Error
     case invalidZipCode(description: String)
     case noBirthdate(description: String)
     case invalidBirthdate(description: String)
+    
+    case invalidProjectNumber(description: String)
+    case noDateOfVisit(description: String)
+    case invalidDateOfVisit(description: String)
+    case invalidCompany(description: String)
 }
 
 /**************************************************************************
@@ -56,15 +63,17 @@ enum EmployeeError: Error
 
 class Employee: Person
 {
-    var firstName: String?          //First name of guest
-    var lastName: String?           //Last name of guest
-    var streetAddress: String?      //Street address of guest
-    var city: String?               //City of guest
-    var state: String?              //State of guest
-    var zipCode: Int?               //Zip code of guest
-    var birthday: Date?             //Birthday of guest
-    var company: String?            //Company of guest
-    var employeeType: EmployeeType  //employee type of guest
+    var firstName: String?          //First name of employee
+    var lastName: String?           //Last name of employee
+    var streetAddress: String?      //Street address of employee
+    var city: String?               //City of employee
+    var state: String?              //State of employee
+    var zipCode: Int?               //Zip code of employee
+    var birthday: Date?             //Birthday of employee
+    var dateOfVisit: Date?          //Date of visit of employee
+    var company: String?            //Company of employee
+    var projectNumber: Int?         //Project number employee is working on
+    var employeeType: EmployeeType  //employee type of employee
     var pass: Pass                  //Pass for the employee with specific area and ride access
     
     /**************************************************************************
@@ -88,7 +97,7 @@ class Employee: Person
      
      **************************************************************************/
     
-    init(firstName: String?, lastName: String?, streetAddress: String?, city: String?, state: String?, zipCode: Int?, birthday: Date?, company: String?, employeeType: EmployeeType)
+    init(firstName: String?, lastName: String?, streetAddress: String?, city: String?, state: String?, zipCode: Int?, birthday: Date?, company: String?, projectNumber: Int?, dateOfVisit: Date?, employeeType: EmployeeType)
     {
         //Initialize values
         
@@ -96,15 +105,18 @@ class Employee: Person
         self.lastName = lastName
         self.streetAddress = streetAddress
         self.city = city
+        self.state = state
         self.zipCode = zipCode
         self.birthday = birthday
         self.company = company
+        self.projectNumber = projectNumber
+        self.dateOfVisit = dateOfVisit
         self.employeeType = employeeType
         
         //Create a pass and setup the pass according to the employee type
         
         self.pass = Pass()
-        self.pass.updatePass(entrantType: employeeType)
+        self.pass.updatePass(entrantType: employeeType, projectNumber: projectNumber, companyName: company)
     }
     
     /**************************************************************************
@@ -131,8 +143,10 @@ class Employee: Person
      
      **************************************************************************/
     
-    convenience init?(employeeType: EmployeeType, firstName: String?, lastName: String?, streetAddress: String?, city: String?, state: String?, zipCode: Int?, birthday: Date?) throws
+    convenience init?(employeeType: EmployeeType, firstName: String?, lastName: String?, streetAddress: String?, city: String?, state: String?, zipCode: Int?, birthday: Date?, company: String?, projectNumber: Int?, dateOfVisit: Date?) throws
     {
+        
+        let calendar = Calendar.current
 
         // If zipCode is not an Int throw an error
         
@@ -175,11 +189,79 @@ class Employee: Person
                 {
                     throw EmployeeError.noBirthdate(description: "No birthday was entered. Please enter a valid birthday.")
                 }
+            
+            case .contract:
+            
+                if firstName == "" || firstName == nil
+                {
+                    throw EmployeeError.noFirstName(description: "Sorry, there is no first name entered for the employee. Please enter a first name.")
+                }
+                if lastName == "" || lastName == nil
+                {
+                    throw EmployeeError.noLastName(description: "Sorry, there is no last name entered for the employee. Please enter a last name.")
+                }
+                if streetAddress == "" || streetAddress == nil
+                {
+                    throw EmployeeError.noStreetAddress(description: "Sorry, there is no street address entered for the employee. Please enter a street address.")
+                }
+                if city == "" || city == nil
+                {
+                    throw EmployeeError.noCity(description: "Sorry, there is no city entered for the employee. Please enter a city.")
+                }
+                if state == "" || state == nil
+                {
+                    throw EmployeeError.noState(description: "Sorry, there is no state entered for the employee. Please enter a state.")
+                }
+                if tempZipCode <= 9999 || tempZipCode >= 100000
+                {
+                    throw EmployeeError.noZipCode(description: "Sorry, there is no zip code entered for the employee. Please enter a zip code.")
+                }
+                if projectNumber! != 1001 && projectNumber! != 1002 && projectNumber! != 1003 && projectNumber! != 2001 && projectNumber! != 2002
+                {
+                    throw EmployeeError.invalidProjectNumber(description: "Invalid project number enetered. Please enter a correct project number.")
+                }
+            
+            case .vendor:
+            
+                if firstName == "" || firstName == nil
+                {
+                    throw EmployeeError.noFirstName(description: "Sorry, there is no first name entered for the employee. Please enter a first name.")
+                }
+                if lastName == "" || lastName == nil
+                {
+                    throw EmployeeError.noLastName(description: "Sorry, there is no last name entered for the employee. Please enter a last name.")
+                }
+                if birthday == nil
+                {
+                    throw EmployeeError.noBirthdate(description: "No birthday was entered. Please enter a valid birthday.")
+                }
+                if company != "Acme" && company != "Orkin" && company != "Fedex" && company != "NW Electrical"
+                {
+                    throw EmployeeError.invalidCompany(description: "Invalid Company. Please enter a valid company")
+                }
+                if dateOfVisit == nil
+                {
+                    throw EmployeeError.noDateOfVisit(description: "No date of visit was entered. Please enter a date of visit")
+                }
+            
+                //If the date of visit is in the past
+                    
+                else
+                {
+                    let tempDateOfVisit = dateOfVisit!.addingTimeInterval(0) // subtract one day to the visit
+                    
+                    if !calendar.isDate(tempDateOfVisit, equalTo: Date(), toGranularity:.day)
+                    {
+                        throw EmployeeError.invalidDateOfVisit(description: "Date needs to be today or a future date.")
+                    }
+                }
         }
         
         // Call default initializer
         
-        self.init(firstName: firstName, lastName: lastName, streetAddress: streetAddress, city: city, state: state, zipCode: tempZipCode, birthday: birthday, company: "Amusement Park Name", employeeType: employeeType)
+        self.init(firstName: firstName, lastName: lastName, streetAddress: streetAddress, city: city, state: state, zipCode: tempZipCode, birthday: birthday, company: company, projectNumber: projectNumber, dateOfVisit: dateOfVisit, employeeType: employeeType)
+        
+        
     }
     
 }

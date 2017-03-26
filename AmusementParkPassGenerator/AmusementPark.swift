@@ -51,13 +51,13 @@ class AmusementPark
      
      **************************************************************************/
     
-    func createGuest(guestType: GuestType, birthday: Date?)
+    func createGuest(guestType: GuestType, firstName: String?, lastName: String?, streetAddress: String?, city: String?, state: String?, zipCode: Int?, birthday: Date?)
     {
         // Create a guest according to the variables passed in.
         
         do
         {
-            let newGuest = try Guest(guestType: guestType, birthday: birthday)
+            let newGuest = try Guest(guestType: guestType, firstName: firstName, lastName: lastName, streetAddress: streetAddress, city: city, state: state, zipCode: zipCode, birthday: birthday)
             guestsArray.append(newGuest!)
         }
         catch let error
@@ -88,14 +88,15 @@ class AmusementPark
      
      **************************************************************************/
     
-    func createEmployee(employeeType: EmployeeType, firstName: String?, lastName: String?, streetAddress: String?, city: String?, state: String?, zipCode: Int?, birthday: Date?)
+    func createEmployee(employeeType: EmployeeType, firstName: String?, lastName: String?, streetAddress: String?, city: String?, state: String?, zipCode: Int?, birthday: Date?, company: String?, projectNumber: Int?, dateOfVisit: Date?)
     {
         
         // Create a guest according to the variables passed in.
         
         do
         {
-            let newEmployee = try Employee(employeeType: employeeType, firstName: firstName, lastName: lastName, streetAddress: streetAddress, city: city, state: state, zipCode: zipCode, birthday: birthday)
+            let newEmployee = try Employee(employeeType: employeeType, firstName: firstName, lastName: lastName, streetAddress: streetAddress, city: city, state: state, zipCode: zipCode, birthday: birthday, company: company, projectNumber: projectNumber, dateOfVisit: dateOfVisit)
+            
             employeeArray.append(newEmployee!)
         }
         catch let error

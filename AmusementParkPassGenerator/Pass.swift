@@ -68,17 +68,12 @@ struct Pass
      
      **************************************************************************/
     
-    mutating func updatePass(entrantType: Optional<Any>)
+    mutating func updatePass(entrantType: Optional<Any>, projectNumber: Int?, companyName: String?)
     {
         // reset area and ride arrays
         
         rideAccessArray = []
         areaAccessArray = []
-        
-        // add common area and ride access privilege for all entrants
-        
-        areaAccessArray.append(AreaAccess.amusementArea)
-        rideAccessArray.append(RideAccess.allRides)
         
         // if entrant is a guest type add specific types of access for the user
         
@@ -88,13 +83,25 @@ struct Pass
             switch entrantType as! GuestType
             {
             case .classic:
+                areaAccessArray.append(AreaAccess.amusementArea)
+                rideAccessArray.append(RideAccess.allRides)
                 break
             case .freeChild:
+                areaAccessArray.append(AreaAccess.amusementArea)
+                rideAccessArray.append(RideAccess.allRides)
                 break
-            case .vip:
+            case .vip, .seasonPassGuest:
+                areaAccessArray.append(AreaAccess.amusementArea)
+                rideAccessArray.append(RideAccess.allRides)
                 rideAccessArray.append(RideAccess.skipLines)
                 discountFood = 10
                 discountMerchandise = 20
+            case .seniorGuest:
+                areaAccessArray.append(AreaAccess.amusementArea)
+                rideAccessArray.append(RideAccess.allRides)
+                rideAccessArray.append(RideAccess.skipLines)
+                discountFood = 10
+                discountMerchandise = 10
             }
         }
         
@@ -102,25 +109,85 @@ struct Pass
         
         if entrantType is EmployeeType
         {
-            discountFood = 15
-            discountMerchandise = 25
-            
             switch entrantType as! EmployeeType
             {
             case .foodServices:
+                areaAccessArray.append(AreaAccess.amusementArea)
                 areaAccessArray.append(AreaAccess.kitchenArea)
+                rideAccessArray.append(RideAccess.allRides)
+                discountFood = 15
+                discountMerchandise = 25
             case .rideServices:
+                areaAccessArray.append(AreaAccess.amusementArea)
                 areaAccessArray.append(AreaAccess.rideControlArea)
+                rideAccessArray.append(RideAccess.allRides)
+                discountFood = 15
+                discountMerchandise = 25
             case .maintenance:
+                areaAccessArray.append(AreaAccess.amusementArea)
                 areaAccessArray.append(AreaAccess.kitchenArea)
                 areaAccessArray.append(AreaAccess.rideControlArea)
                 areaAccessArray.append(AreaAccess.maintenanceArea)
+                rideAccessArray.append(RideAccess.allRides)
+                discountFood = 15
+                discountMerchandise = 25
             case .manager:
-                discountFood = 25
+                areaAccessArray.append(AreaAccess.amusementArea)
                 areaAccessArray.append(AreaAccess.kitchenArea)
                 areaAccessArray.append(AreaAccess.rideControlArea)
                 areaAccessArray.append(AreaAccess.maintenanceArea)
                 areaAccessArray.append(AreaAccess.officeArea)
+                rideAccessArray.append(RideAccess.allRides)
+                discountFood = 25
+                discountMerchandise = 25
+            case .contract:
+                switch projectNumber!
+                {
+                case 1001:
+                    areaAccessArray.append(AreaAccess.amusementArea)
+                    areaAccessArray.append(AreaAccess.amusementArea)
+                    areaAccessArray.append(AreaAccess.rideControlArea)
+                case 1002:
+                    areaAccessArray.append(AreaAccess.amusementArea)
+                    areaAccessArray.append(AreaAccess.amusementArea)
+                    areaAccessArray.append(AreaAccess.rideControlArea)
+                    areaAccessArray.append(AreaAccess.maintenanceArea)
+                case 1003:
+                    areaAccessArray.append(AreaAccess.amusementArea)
+                    areaAccessArray.append(AreaAccess.amusementArea)
+                    areaAccessArray.append(AreaAccess.rideControlArea)
+                    areaAccessArray.append(AreaAccess.kitchenArea)
+                    areaAccessArray.append(AreaAccess.maintenanceArea)
+                    areaAccessArray.append(AreaAccess.officeArea)
+                case 2001:
+                    areaAccessArray.append(AreaAccess.officeArea)
+                case 2002:
+                    areaAccessArray.append(AreaAccess.kitchenArea)
+                    areaAccessArray.append(AreaAccess.maintenanceArea)
+                default:
+                    break
+                }
+            case .vendor:
+                switch companyName!
+                {
+                case "Acme":
+                    areaAccessArray.append(AreaAccess.kitchenArea)
+                case "Orkin":
+                    areaAccessArray.append(AreaAccess.amusementArea)
+                    areaAccessArray.append(AreaAccess.rideControlArea)
+                    areaAccessArray.append(AreaAccess.kitchenArea)
+                case "Fedex":
+                    areaAccessArray.append(AreaAccess.maintenanceArea)
+                    areaAccessArray.append(AreaAccess.officeArea)
+                case "NW Electrical":
+                    areaAccessArray.append(AreaAccess.amusementArea)
+                    areaAccessArray.append(AreaAccess.rideControlArea)
+                    areaAccessArray.append(AreaAccess.kitchenArea)
+                    areaAccessArray.append(AreaAccess.maintenanceArea)
+                    areaAccessArray.append(AreaAccess.officeArea)
+                default:
+                    break
+                }
             }
         }
     }

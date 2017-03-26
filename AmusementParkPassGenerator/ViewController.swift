@@ -36,23 +36,71 @@ class ViewController: UIViewController
         
         print("Guest - Free Child Error\n")
         
-        amusementPark.createGuest(guestType: .freeChild, birthday: nil)
+        amusementPark.createGuest(guestType: .freeChild, firstName: nil, lastName: nil, streetAddress: nil, city: nil, state: nil, zipCode: 0, birthday: nil)
         
         print("\nGuest - Free Child Error\n")
         
-        amusementPark.createGuest(guestType: .freeChild, birthday: Date().addingTimeInterval(-157784761))
+        amusementPark.createGuest(guestType: .freeChild, firstName: nil, lastName: nil, streetAddress: nil, city: nil, state: nil, zipCode: 0, birthday: Date().addingTimeInterval(-157784761))
+        
+        print("\nGuest - Season Pass No First Name\n")
+        
+        amusementPark.createGuest(guestType: .seasonPassGuest, firstName: "", lastName: "", streetAddress: "", city: "", state: "", zipCode: 0, birthday: nil)
+        
+        print("\nGuest - Season Pass No Last Name\n")
+        
+        amusementPark.createGuest(guestType: .seasonPassGuest, firstName: "Alan", lastName: "", streetAddress: "", city: "", state: "", zipCode: 0, birthday: nil)
+        
+        print("\nGuest - Season Pass No Street Address\n")
+        
+        amusementPark.createGuest(guestType: .seasonPassGuest, firstName: "Alan", lastName: "Longcoy", streetAddress: "", city: "", state: "", zipCode: 0, birthday: nil)
+        
+        print("\nGuest - Season Pass No City\n")
+        
+        amusementPark.createGuest(guestType: .seasonPassGuest, firstName: "Alan", lastName: "Longcoy", streetAddress: "514 That Way St", city: "", state: "", zipCode: 0, birthday: nil)
+        
+        print("\nGuest - Season Pass No State\n")
+        
+        amusementPark.createGuest(guestType: .seasonPassGuest, firstName: "Alan", lastName: "Longcoy", streetAddress: "514 That Way St", city: "Lake Jackson", state: "", zipCode: 0, birthday: nil)
+        
+        print("\nGuest - Season Pass No ZIP code\n")
+        
+        amusementPark.createGuest(guestType: .seasonPassGuest, firstName: "Alan", lastName: "Longcoy", streetAddress: "514 That Way St", city: "Lake Jackson", state: "Texas", zipCode: 0, birthday: nil)
+        
+        print("\nGuest - Senior Guest No First Name\n")
+        
+        amusementPark.createGuest(guestType: .seniorGuest, firstName: "", lastName: "", streetAddress: "", city: "", state: "", zipCode: 0, birthday: nil)
+        
+        print("\nGuest - Senior Guest No Last Name\n")
+        
+        amusementPark.createGuest(guestType: .seniorGuest, firstName: "Alan", lastName: "", streetAddress: "", city: "", state: "", zipCode: 0, birthday: nil)
+        
+        print("\nGuest - Senior Guest Birthday Error\n")
+        
+        amusementPark.createGuest(guestType: .seniorGuest, firstName: "Alan", lastName: "Longcoy", streetAddress: "", city: "", state: "", zipCode: 0, birthday: nil)
+        
+        print("\nGuest - Senior Guest Birthday Error\n")
+        
+        amusementPark.createGuest(guestType: .seniorGuest, firstName: "Alan", lastName: "Longcoy", streetAddress: "", city: "", state: "", zipCode: 0, birthday: Date().addingTimeInterval(-2051201881))
         
         print("\nGuest - Free Child OK\n")
         
-        amusementPark.createGuest(guestType: .freeChild, birthday: Date().addingTimeInterval(-157784759))
+        amusementPark.createGuest(guestType: .freeChild, firstName: nil, lastName: nil, streetAddress: nil, city: nil, state: nil, zipCode: 0, birthday: Date().addingTimeInterval(-157784759))
         
         print("\nGuest - Classic OK\n")
         
-        amusementPark.createGuest(guestType: .classic, birthday: Date().addingTimeInterval(-157784760))
+        amusementPark.createGuest(guestType: .classic, firstName: nil, lastName: nil, streetAddress: nil, city: nil, state: nil, zipCode: 0, birthday: nil)
         
         print("\nGuest - VIP OK\n")
         
-        amusementPark.createGuest(guestType: .vip, birthday: Date().addingTimeInterval(-157784760))
+        amusementPark.createGuest(guestType: .vip, firstName: nil, lastName: nil, streetAddress: nil, city: nil, state: nil, zipCode: 0, birthday: nil)
+        
+        print("\nGuest - Season Pass OK\n")
+        
+        amusementPark.createGuest(guestType: .seasonPassGuest, firstName: "Alan", lastName: "Longcoy", streetAddress: "514 That Way St", city: "Lake Jackson", state: "Texas", zipCode: 77566, birthday: nil)
+        
+        print("\nGuest - Senior Guest OK\n")
+        
+        amusementPark.createGuest(guestType: .seniorGuest, firstName: "Alan", lastName: "Longcoy", streetAddress: "", city: "", state: "", zipCode: 0, birthday: Date().addingTimeInterval(-2051201879))
         
         /**************************************************************************************************
          Guest Test Case
@@ -193,47 +241,135 @@ class ViewController: UIViewController
         
         print("Employee - no first name Error\n")
         
-        amusementPark.createEmployee(employeeType: .foodServices, firstName: "", lastName: "", streetAddress: "", city: "", state: "", zipCode: 0, birthday: nil)
+        amusementPark.createEmployee(employeeType: .foodServices, firstName: "", lastName: "", streetAddress: "", city: "", state: "", zipCode: 0, birthday: nil, company: "", projectNumber: 0, dateOfVisit: nil)
         
         print("\nEmployee - no last name Error\n")
         
-        amusementPark.createEmployee(employeeType: .foodServices, firstName: "Alan", lastName: "", streetAddress: "", city: "", state: "", zipCode: 0, birthday: nil)
+        amusementPark.createEmployee(employeeType: .foodServices, firstName: "Alan", lastName: "", streetAddress: "", city: "", state: "", zipCode: 0, birthday: nil, company: "", projectNumber: 0, dateOfVisit: nil)
         
         print("\nEmployee - no street address Error\n")
         
-        amusementPark.createEmployee(employeeType: .foodServices, firstName: "Alan", lastName: "Longcoy", streetAddress: "", city: "", state: "", zipCode: 0, birthday: nil)
+        amusementPark.createEmployee(employeeType: .foodServices, firstName: "Alan", lastName: "Longcoy", streetAddress: "", city: "", state: "", zipCode: 0, birthday: nil, company: "", projectNumber: 0, dateOfVisit: nil)
         
         print("\nEmployee - no city Error\n")
         
-        amusementPark.createEmployee(employeeType: .foodServices, firstName: "Alan", lastName: "Longcoy", streetAddress: "514 That Way St. apt 1526", city: "", state: "", zipCode: 0, birthday: nil)
+        amusementPark.createEmployee(employeeType: .foodServices, firstName: "Alan", lastName: "Longcoy", streetAddress: "514 That Way St", city: "", state: "", zipCode: 0, birthday: nil, company: "", projectNumber: 0, dateOfVisit: nil)
         
         print("\nEmployee - no state Error\n")
         
-        amusementPark.createEmployee(employeeType: .foodServices, firstName: "Alan", lastName: "Longcoy", streetAddress: "514 That Way St. apt 1526", city: "Lake Jackson", state: "", zipCode: 0, birthday: nil)
+        amusementPark.createEmployee(employeeType: .foodServices, firstName: "Alan", lastName: "Longcoy", streetAddress: "514 That Way St", city: "Lake Jackson", state: "", zipCode: 0, birthday: nil, company: "", projectNumber: 0, dateOfVisit: nil)
         
         print("\nEmployee - no zip code Error\n")
         
-        amusementPark.createEmployee(employeeType: .foodServices, firstName: "Alan", lastName: "Longcoy", streetAddress: "514 That Way St. apt 1526", city: "Lake Jackson", state: "Texas", zipCode: 0, birthday: nil)
+        amusementPark.createEmployee(employeeType: .foodServices, firstName: "Alan", lastName: "Longcoy", streetAddress: "514 That Way St", city: "Lake Jackson", state: "Texas", zipCode: 0, birthday: nil, company: "", projectNumber: 0, dateOfVisit: nil)
         
         print("\nEmployee - no birthday Error\n")
         
-        amusementPark.createEmployee(employeeType: .foodServices, firstName: "Alan", lastName: "Longcoy", streetAddress: "514 That Way St. apt 1526", city: "Lake Jackson", state: "Texas", zipCode: 77566, birthday: nil)
+        amusementPark.createEmployee(employeeType: .foodServices, firstName: "Alan", lastName: "Longcoy", streetAddress: "514 That Way St", city: "Lake Jackson", state: "Texas", zipCode: 77566, birthday: nil, company: "", projectNumber: 0, dateOfVisit: nil)
+        
+        print("Employee Contract- no first name Error\n")
+        
+        amusementPark.createEmployee(employeeType: .contract, firstName: "", lastName: "", streetAddress: "", city: "", state: "", zipCode: 0, birthday: nil, company: "", projectNumber: 0, dateOfVisit: nil)
+        
+        print("\nEmployee Contract - no last name Error\n")
+        
+        amusementPark.createEmployee(employeeType: .contract, firstName: "Alan", lastName: "", streetAddress: "", city: "", state: "", zipCode: 0, birthday: nil, company: "", projectNumber: 0, dateOfVisit: nil)
+        
+        print("\nEmployee Contract - no street address Error\n")
+        
+        amusementPark.createEmployee(employeeType: .contract, firstName: "Alan", lastName: "Longcoy", streetAddress: "", city: "", state: "", zipCode: 0, birthday: nil, company: "", projectNumber: 0, dateOfVisit: nil)
+        
+        print("\nEmployee Contract - no city Error\n")
+        
+        amusementPark.createEmployee(employeeType: .contract, firstName: "Alan", lastName: "Longcoy", streetAddress: "514 That Way St", city: "", state: "", zipCode: 0, birthday: nil, company: "", projectNumber: 0, dateOfVisit: nil)
+        
+        print("\nEmployee Contract - no state Error\n")
+        
+        amusementPark.createEmployee(employeeType: .contract, firstName: "Alan", lastName: "Longcoy", streetAddress: "514 That Way St", city: "Lake Jackson", state: "", zipCode: 0, birthday: nil, company: "", projectNumber: 0, dateOfVisit: nil)
+        
+        print("\nEmployee Contract - no zip code Error\n")
+        
+        amusementPark.createEmployee(employeeType: .contract, firstName: "Alan", lastName: "Longcoy", streetAddress: "514 That Way St", city: "Lake Jackson", state: "Texas", zipCode: 0, birthday: nil, company: "", projectNumber: 0, dateOfVisit: nil)
+        
+        print("\nEmployee Contract - wrong project number Error\n")
+        
+        amusementPark.createEmployee(employeeType: .contract, firstName: "Alan", lastName: "Longcoy", streetAddress: "514 That Way St", city: "Lake Jackson", state: "Texas", zipCode: 77566, birthday: nil, company: "", projectNumber: 0, dateOfVisit: nil)
+        
+        print("Employee Vendor- no first name Error\n")
+        
+        amusementPark.createEmployee(employeeType: .vendor, firstName: "", lastName: "", streetAddress: "", city: "", state: "", zipCode: 0, birthday: nil, company: "", projectNumber: 0, dateOfVisit: nil)
+        
+        print("\nEmployee Vendor - no last name Error\n")
+        
+        amusementPark.createEmployee(employeeType: .vendor, firstName: "Alan", lastName: "", streetAddress: "", city: "", state: "", zipCode: 0, birthday: nil, company: "", projectNumber: 0, dateOfVisit: nil)
+        
+        print("\nEmployee Vendor - no birthday Error\n")
+        
+        amusementPark.createEmployee(employeeType: .vendor, firstName: "Alan", lastName: "Longcoy", streetAddress: "", city: "", state: "", zipCode: 0, birthday: nil, company: "", projectNumber: 0, dateOfVisit: nil)
+        
+        print("\nEmployee Vendor - company Error\n")
+        
+        amusementPark.createEmployee(employeeType: .vendor, firstName: "Alan", lastName: "Longcoy", streetAddress: "", city: "", state: "", zipCode: 0, birthday: Date(), company: "Company", projectNumber: 0, dateOfVisit: nil)
+        
+        print("\nEmployee Vendor - no date of visit Error\n")
+        
+        amusementPark.createEmployee(employeeType: .vendor, firstName: "Alan", lastName: "Longcoy", streetAddress: "", city: "", state: "", zipCode: 0, birthday: Date(), company: "Acme", projectNumber: 0, dateOfVisit: nil)
+        
+        print("\nEmployee Vendor - date of visit Error\n")
+        
+        amusementPark.createEmployee(employeeType: .vendor, firstName: "Alan", lastName: "Longcoy", streetAddress: "", city: "", state: "", zipCode: 0, birthday: Date(), company: "Acme", projectNumber: 0, dateOfVisit: Date().addingTimeInterval(-86401))
         
         print("\nEmployee - Food Service Employee OK\n")
         
-        amusementPark.createEmployee(employeeType: .foodServices, firstName: "Alan", lastName: "Longcoy", streetAddress: "514 That Way St. apt 1526", city: "Lake Jackson", state: "Texas", zipCode: 77566, birthday: Date())
+        amusementPark.createEmployee(employeeType: .foodServices, firstName: "Alan", lastName: "Longcoy", streetAddress: "514 That Way St", city: "Lake Jackson", state: "Texas", zipCode: 77566, birthday: Date(), company: "", projectNumber: 0, dateOfVisit: nil)
         
         print("\nEmployee - Ride Service Employee OK\n")
         
-        amusementPark.createEmployee(employeeType: .rideServices, firstName: "Alan", lastName: "Longcoy", streetAddress: "514 That Way St. apt 1526", city: "Lake Jackson", state: "Texas", zipCode: 77566, birthday: Date())
+        amusementPark.createEmployee(employeeType: .rideServices, firstName: "Alan", lastName: "Longcoy", streetAddress: "514 That Way St", city: "Lake Jackson", state: "Texas", zipCode: 77566, birthday: Date(), company: "", projectNumber: 0, dateOfVisit: nil)
         
         print("\nEmployee - Maintenance Employee OK\n")
         
-        amusementPark.createEmployee(employeeType: .maintenance, firstName: "Alan", lastName: "Longcoy", streetAddress: "514 That Way St. apt 1526", city: "Lake Jackson", state: "Texas", zipCode: 77566, birthday: Date())
+        amusementPark.createEmployee(employeeType: .maintenance, firstName: "Alan", lastName: "Longcoy", streetAddress: "514 That Way St", city: "Lake Jackson", state: "Texas", zipCode: 77566, birthday: Date(), company: "", projectNumber: 0, dateOfVisit: nil)
         
         print("\nEmployee - Manager Employee OK\n")
         
-        amusementPark.createEmployee(employeeType: .manager, firstName: "Alan", lastName: "Longcoy", streetAddress: "514 That Way St. apt 1526", city: "Lake Jackson", state: "Texas", zipCode: 77566, birthday: Date())
+        amusementPark.createEmployee(employeeType: .manager, firstName: "Alan", lastName: "Longcoy", streetAddress: "514 That Way St", city: "Lake Jackson", state: "Texas", zipCode: 77566, birthday: Date(), company: "", projectNumber: 0, dateOfVisit: nil)
+        
+        print("\nEmployee Contract - 1001\n")
+        
+        amusementPark.createEmployee(employeeType: .contract, firstName: "Alan", lastName: "Longcoy", streetAddress: "514 That Way St", city: "Lake Jackson", state: "Texas", zipCode: 77566, birthday: nil, company: "", projectNumber: 1001, dateOfVisit: nil)
+        
+        print("\nEmployee Contract - 1002\n")
+        
+        amusementPark.createEmployee(employeeType: .contract, firstName: "Alan", lastName: "Longcoy", streetAddress: "514 That Way St", city: "Lake Jackson", state: "Texas", zipCode: 77566, birthday: nil, company: "", projectNumber: 1002, dateOfVisit: nil)
+        
+        print("\nEmployee Contract - 1003\n")
+        
+        amusementPark.createEmployee(employeeType: .contract, firstName: "Alan", lastName: "Longcoy", streetAddress: "514 That Way St", city: "Lake Jackson", state: "Texas", zipCode: 77566, birthday: nil, company: "", projectNumber: 1003, dateOfVisit: nil)
+        
+        print("\nEmployee Contract - 2001\n")
+        
+        amusementPark.createEmployee(employeeType: .contract, firstName: "Alan", lastName: "Longcoy", streetAddress: "514 That Way St", city: "Lake Jackson", state: "Texas", zipCode: 77566, birthday: nil, company: "", projectNumber: 2001, dateOfVisit: nil)
+        
+        print("\nEmployee Contract - 2002\n")
+        
+        amusementPark.createEmployee(employeeType: .contract, firstName: "Alan", lastName: "Longcoy", streetAddress: "514 That Way St", city: "Lake Jackson", state: "Texas", zipCode: 77566, birthday: nil, company: "", projectNumber: 2002, dateOfVisit: nil)
+        
+        print("\nEmployee Vendor - Acme\n")
+        
+        amusementPark.createEmployee(employeeType: .vendor, firstName: "Alan", lastName: "Longcoy", streetAddress: "", city: "", state: "", zipCode: 0, birthday: Date(), company: "Acme", projectNumber: 0, dateOfVisit: Date())
+        
+        print("\nEmployee Vendor - Orkin\n")
+        
+        amusementPark.createEmployee(employeeType: .vendor, firstName: "Alan", lastName: "Longcoy", streetAddress: "", city: "", state: "", zipCode: 0, birthday: Date(), company: "Orkin", projectNumber: 0, dateOfVisit: Date())
+        
+        print("\nEmployee Vendor - Fedex\n")
+        
+        amusementPark.createEmployee(employeeType: .vendor, firstName: "Alan", lastName: "Longcoy", streetAddress: "", city: "", state: "", zipCode: 0, birthday: Date(), company: "Fedex", projectNumber: 0, dateOfVisit: Date())
+        
+        print("\nEmployee Vendor - NW Electrical\n")
+        
+        amusementPark.createEmployee(employeeType: .vendor, firstName: "Alan", lastName: "Longcoy", streetAddress: "", city: "", state: "", zipCode: 0, birthday: Date(), company: "NW Electrical", projectNumber: 0, dateOfVisit: Date())
         
         
         /**************************************************************************************************
