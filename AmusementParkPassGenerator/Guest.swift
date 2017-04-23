@@ -134,13 +134,6 @@ class Guest: Person
     convenience init?(guestType: GuestType, firstName: String?, lastName: String?, streetAddress: String?, city: String?, state: String?, zipCode: Int?, birthday: Date?) throws
     {
         
-        // If zipCode is not an Int throw an error
-        
-        guard let tempZipCode = zipCode! as Int? else
-        {
-            throw GuestError.invalidZipCode(description: "Sorry, the zip code is not valid. Please re-enter the zip code of the employee.")
-        }
-        
         //Check the guest type and make sure the buisness ruels are being followed
         
         switch guestType
@@ -169,6 +162,13 @@ class Guest: Person
                 }
             
             case .seasonPassGuest:
+                
+                // If zipCode is not an Int throw an error
+                
+                guard let tempZipCode = zipCode as Int? else
+                {
+                    throw GuestError.invalidZipCode(description: "Sorry, the zip code is not valid. Please re-enter the zip code of the employee.")
+                }
             
                 if firstName == "" || firstName == nil
                 {
@@ -234,7 +234,7 @@ class Guest: Person
         
         // Call default initializer
         
-        self.init(firstName: firstName, lastName: lastName, streetAddress: streetAddress, city: city, state: state, zipCode: tempZipCode, birthday: birthday, company: nil, guestType: guestType)
+        self.init(firstName: firstName, lastName: lastName, streetAddress: streetAddress, city: city, state: state, zipCode: zipCode, birthday: birthday, company: nil, guestType: guestType)
     }
 }
 

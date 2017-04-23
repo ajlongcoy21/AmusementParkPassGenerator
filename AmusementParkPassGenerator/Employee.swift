@@ -147,19 +147,19 @@ class Employee: Person
     {
         
         let calendar = Calendar.current
-
-        // If zipCode is not an Int throw an error
-        
-        guard let tempZipCode = zipCode! as Int? else
-        {
-            throw EmployeeError.invalidZipCode(description: "Sorry, the zip code is not valid. Please re-enter the zip code of the employee.")
-        }
         
         //Check the employee type and make sure the buisness ruels are being followed
         
         switch employeeType
         {
             case .foodServices, .rideServices, .maintenance, .manager:
+                
+                // If zipCode is not an Int throw an error
+                
+                guard let tempZipCode = zipCode as Int? else
+                {
+                    throw EmployeeError.invalidZipCode(description: "Sorry, the zip code is not valid. Please re-enter the zip code of the employee.")
+                }
             
                 if firstName == "" || firstName == nil
                 {
@@ -184,13 +184,16 @@ class Employee: Person
                 if tempZipCode <= 9999 || tempZipCode >= 100000
                 {
                     throw EmployeeError.noZipCode(description: "Sorry, there is no zip code entered for the employee. Please enter a zip code.")
-                }
-                if birthday == nil
-                {
-                    throw EmployeeError.noBirthdate(description: "No birthday was entered. Please enter a valid birthday.")
                 }
             
             case .contract:
+                
+                // If zipCode is not an Int throw an error
+                
+                guard let tempZipCode = zipCode as Int? else
+                {
+                    throw EmployeeError.invalidZipCode(description: "Sorry, the zip code is not valid. Please re-enter the zip code of the employee.")
+                }
             
                 if firstName == "" || firstName == nil
                 {
@@ -216,7 +219,7 @@ class Employee: Person
                 {
                     throw EmployeeError.noZipCode(description: "Sorry, there is no zip code entered for the employee. Please enter a zip code.")
                 }
-                if projectNumber! != 1001 && projectNumber! != 1002 && projectNumber! != 1003 && projectNumber! != 2001 && projectNumber! != 2002
+                if projectNumber != 1001 && projectNumber != 1002 && projectNumber != 1003 && projectNumber != 2001 && projectNumber != 2002
                 {
                     throw EmployeeError.invalidProjectNumber(description: "Invalid project number enetered. Please enter a correct project number.")
                 }
@@ -250,7 +253,7 @@ class Employee: Person
                 {
                     let tempDateOfVisit = dateOfVisit!.addingTimeInterval(0) // subtract one day to the visit
                     
-                    if !calendar.isDate(tempDateOfVisit, equalTo: Date(), toGranularity:.day)
+                    if !calendar.isDate(tempDateOfVisit, inSameDayAs: tempDateOfVisit)
                     {
                         throw EmployeeError.invalidDateOfVisit(description: "Date needs to be today or a future date.")
                     }
@@ -259,7 +262,7 @@ class Employee: Person
         
         // Call default initializer
         
-        self.init(firstName: firstName, lastName: lastName, streetAddress: streetAddress, city: city, state: state, zipCode: tempZipCode, birthday: birthday, company: company, projectNumber: projectNumber, dateOfVisit: dateOfVisit, employeeType: employeeType)
+        self.init(firstName: firstName, lastName: lastName, streetAddress: streetAddress, city: city, state: state, zipCode: zipCode, birthday: birthday, company: company, projectNumber: projectNumber, dateOfVisit: dateOfVisit, employeeType: employeeType)
         
         
     }

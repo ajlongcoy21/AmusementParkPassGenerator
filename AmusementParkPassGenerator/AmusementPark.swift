@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 class AmusementPark
 {
@@ -58,11 +59,49 @@ class AmusementPark
         do
         {
             let newGuest = try Guest(guestType: guestType, firstName: firstName, lastName: lastName, streetAddress: streetAddress, city: city, state: state, zipCode: zipCode, birthday: birthday)
+            
             guestsArray.append(newGuest!)
+            
+        }
+        catch GuestError.noBirthdate(let description)
+        {
+            displayAlert(alertTitle: "Guest Pass Error", alertMessage: description)
+        }
+        catch GuestError.invalidGuestType(let description)
+        {
+            displayAlert(alertTitle: "Guest Pass Error", alertMessage: description)
+        }
+        catch GuestError.invalidBirthdate(let description)
+        {
+            displayAlert(alertTitle: "Guest Pass Error", alertMessage: description)
+        }
+        catch GuestError.invalidZipCode(let description)
+        {
+            displayAlert(alertTitle: "Guest Pass Error", alertMessage: description)
+        }
+        catch GuestError.noCity(let description)
+        {
+            displayAlert(alertTitle: "Guest Pass Error", alertMessage: description)
+        }
+        catch GuestError.noFirstName(let description)
+        {
+            displayAlert(alertTitle: "Guest Pass Error", alertMessage: description)
+        }
+        catch GuestError.noLastName(let description)
+        {
+            displayAlert(alertTitle: "Guest Pass Error", alertMessage: description)
+        }
+        catch GuestError.noState(let description)
+        {
+            displayAlert(alertTitle: "Guest Pass Error", alertMessage: description)
+        }
+        catch GuestError.noStreetAddress(let description)
+        {
+            displayAlert(alertTitle: "Guest Pass Error", alertMessage: description)
         }
         catch let error
         {
-            print(error)
+            displayAlert(alertTitle: "Guest Pass Error", alertMessage: "\(error)")
         }
     }
     
@@ -98,6 +137,62 @@ class AmusementPark
             let newEmployee = try Employee(employeeType: employeeType, firstName: firstName, lastName: lastName, streetAddress: streetAddress, city: city, state: state, zipCode: zipCode, birthday: birthday, company: company, projectNumber: projectNumber, dateOfVisit: dateOfVisit)
             
             employeeArray.append(newEmployee!)
+        }
+        catch EmployeeError.invalidBirthdate(let description)
+        {
+            displayAlert(alertTitle: "Employee Pass Error", alertMessage: description)
+        }
+        catch EmployeeError.invalidCompany(let description)
+        {
+            displayAlert(alertTitle: "Employee Pass Error", alertMessage: description)
+        }
+        catch EmployeeError.invalidDateOfVisit(let description)
+        {
+            displayAlert(alertTitle: "Employee Pass Error", alertMessage: description)
+        }
+        catch EmployeeError.invalidEmployeeType(let description)
+        {
+            displayAlert(alertTitle: "Employee Pass Error", alertMessage: description)
+        }
+        catch EmployeeError.invalidProjectNumber(let description)
+        {
+            displayAlert(alertTitle: "Employee Pass Error", alertMessage: description)
+        }
+        catch EmployeeError.invalidZipCode(let description)
+        {
+            displayAlert(alertTitle: "Employee Pass Error", alertMessage: description)
+        }
+        catch EmployeeError.noBirthdate(let description)
+        {
+            displayAlert(alertTitle: "Employee Pass Error", alertMessage: description)
+        }
+        catch EmployeeError.noCity(let description)
+        {
+            displayAlert(alertTitle: "Employee Pass Error", alertMessage: description)
+        }
+        catch EmployeeError.noDateOfVisit(let description)
+        {
+            displayAlert(alertTitle: "Employee Pass Error", alertMessage: description)
+        }
+        catch EmployeeError.noFirstName(let description)
+        {
+            displayAlert(alertTitle: "Employee Pass Error", alertMessage: description)
+        }
+        catch EmployeeError.noLastName(let description)
+        {
+            displayAlert(alertTitle: "Employee Pass Error", alertMessage: description)
+        }
+        catch EmployeeError.noState(let description)
+        {
+            displayAlert(alertTitle: "Employee Pass Error", alertMessage: description)
+        }
+        catch EmployeeError.noStreetAddress(let description)
+        {
+            displayAlert(alertTitle: "Employee Pass Error", alertMessage: description)
+        }
+        catch EmployeeError.noZipCode(let description)
+        {
+            displayAlert(alertTitle: "Employee Pass Error", alertMessage: description)
         }
         catch let error
         {
@@ -279,6 +374,19 @@ class AmusementPark
         {
             employee.pass.printRideAccess()
         }
+    }
+    
+    func displayAlert(alertTitle: String, alertMessage: String)
+    {
+        let alertController = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: UIAlertControllerStyle.alert)
+        alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default,handler: nil))
+        
+        let alertWindow = UIWindow(frame: UIScreen.main.bounds)
+        alertWindow.rootViewController = UIViewController()
+        alertWindow.windowLevel = UIWindowLevelAlert + 1;
+        alertWindow.makeKeyAndVisible()
+        alertWindow.rootViewController?.present(alertController, animated: true, completion: nil)
+        
     }
     
 }

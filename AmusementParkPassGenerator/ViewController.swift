@@ -11,25 +11,37 @@ import UIKit
 class ViewController: UIViewController
 {
 
+    var amusementPark = AmusementPark()
+    var passState: Int = 0
+    var myBirthday = DateFormatter()
+    var myDateOfVisit = DateFormatter()
+    
     @IBOutlet weak var guestButton: UIButton!
     @IBOutlet weak var employeeButton: UIButton!
     @IBOutlet weak var managerButton: UIButton!
     @IBOutlet weak var vendorButton: UIButton!
     
-
-
     @IBOutlet weak var entrantButton1: UIButton!
     @IBOutlet weak var entrantButton2: UIButton!
     @IBOutlet weak var entrantButton3: UIButton!
     @IBOutlet weak var entrantButton4: UIButton!
     @IBOutlet weak var entrantButton5: UIButton!
     
-    @IBOutlet weak var entrantView: UIStackView!
+    @IBOutlet weak var birthdayText: UITextField!
+    @IBOutlet weak var dateOfVisitText: UITextField!
+    @IBOutlet weak var projectNumberText: UITextField!
+    @IBOutlet weak var firstNameText: UITextField!
+    @IBOutlet weak var lastNameText: UITextField!
+    @IBOutlet weak var companyText: UITextField!
+    @IBOutlet weak var streetAddressText: UITextField!
+    @IBOutlet weak var cityText: UITextField!
+    @IBOutlet weak var stateText: UITextField!
+    @IBOutlet weak var zipCodeText: UITextField!
     
+    @IBOutlet weak var generatePassButton: UIButton!
     
     @IBAction func entrantTypeSelected(_ sender: UIButton)
     {
-        //let buttonID = sender.currentTitle! as String
         
         switch sender.tag
         {
@@ -42,6 +54,10 @@ class ViewController: UIViewController
             self.enableButtons()
             self.unhideButtons()
             self.makeButtonsGray()
+                
+            self.disableTextFields()
+            self.makeTextFieldClear()
+            self.clearText()
                 
             self.entrantButton1.setTitleColor(UIColor.white, for: .normal)
                 
@@ -58,6 +74,10 @@ class ViewController: UIViewController
             
             })
             
+            passState = 0
+            
+            print("Pass State: \(passState)\n\n")
+            
         case 1:
            
             UIView.animate(withDuration: 0.0001, animations:{
@@ -67,6 +87,10 @@ class ViewController: UIViewController
             self.enableButtons()
             self.unhideButtons()
             self.makeButtonsGray()
+                
+            self.disableTextFields()
+            self.makeTextFieldClear()
+            self.clearText()
                 
             self.entrantButton1.setTitleColor(UIColor.white, for: .normal)
                 
@@ -84,6 +108,25 @@ class ViewController: UIViewController
             
             })
             
+            
+            firstNameText.isEnabled = true
+            lastNameText.isEnabled = true
+            streetAddressText.isEnabled = true
+            cityText.isEnabled = true
+            stateText.isEnabled = true
+            zipCodeText.isEnabled = true
+            
+            firstNameText.backgroundColor = UIColor.white
+            lastNameText.backgroundColor = UIColor.white
+            streetAddressText.backgroundColor = UIColor.white
+            cityText.backgroundColor = UIColor.white
+            stateText.backgroundColor = UIColor.white
+            zipCodeText.backgroundColor = UIColor.white
+            
+            passState = 5
+            
+            print("Pass State: \(passState)\n\n")
+            
         case 2:
             
             UIView.animate(withDuration: 0.0001, animations:{
@@ -93,6 +136,10 @@ class ViewController: UIViewController
                 self.enableButtons()
                 self.unhideButtons()
                 self.makeButtonsGray()
+                
+                self.disableTextFields()
+                self.makeTextFieldClear()
+                self.clearText()
                 
                 self.entrantButton1.setTitleColor(UIColor.white, for: .normal)
                 
@@ -111,6 +158,24 @@ class ViewController: UIViewController
                 
             })
             
+            firstNameText.isEnabled = true
+            lastNameText.isEnabled = true
+            streetAddressText.isEnabled = true
+            cityText.isEnabled = true
+            stateText.isEnabled = true
+            zipCodeText.isEnabled = true
+            
+            firstNameText.backgroundColor = UIColor.white
+            lastNameText.backgroundColor = UIColor.white
+            streetAddressText.backgroundColor = UIColor.white
+            cityText.backgroundColor = UIColor.white
+            stateText.backgroundColor = UIColor.white
+            zipCodeText.backgroundColor = UIColor.white
+            
+            passState = 9
+            
+            print("Pass State: \(passState)\n\n")
+            
         case 3:
             
             UIView.animate(withDuration: 0.0001, animations:{
@@ -120,6 +185,10 @@ class ViewController: UIViewController
                 self.enableButtons()
                 self.unhideButtons()
                 self.makeButtonsGray()
+                
+                self.disableTextFields()
+                self.makeTextFieldClear()
+                self.clearText()
                 
                 self.entrantButton1.setTitleColor(UIColor.white, for: .normal)
                 
@@ -137,6 +206,24 @@ class ViewController: UIViewController
                 
             })
             
+            firstNameText.isEnabled = true
+            lastNameText.isEnabled = true
+            birthdayText.isEnabled = true
+            dateOfVisitText.isEnabled = true
+            companyText.isEnabled = true
+
+            
+            firstNameText.backgroundColor = UIColor.white
+            lastNameText.backgroundColor = UIColor.white
+            birthdayText.backgroundColor = UIColor.white
+            dateOfVisitText.backgroundColor = UIColor.white
+            companyText.backgroundColor = UIColor.white
+            
+            passState = 10
+            
+            print("Pass State: \(passState)\n\n")
+
+            
         case 4:
             
             UIView.animate(withDuration: 0.0001, animations:{
@@ -150,6 +237,42 @@ class ViewController: UIViewController
                 self.entrantButton5.setTitleColor(UIColor.lightGray, for: .normal)
                 
             })
+            
+            switch entrantButton1.title(for: .normal)!
+            {
+            case "Classic":
+                makeTextFieldClear()
+                clearText()
+                birthdayText.isEnabled = false
+                dateOfVisitText.isEnabled = false
+                projectNumberText.isEnabled = false
+                firstNameText.isEnabled = false
+                lastNameText.isEnabled = false
+                companyText.isEnabled = false
+                streetAddressText.isEnabled = false
+                cityText.isEnabled = false
+                stateText.isEnabled = false
+                zipCodeText.isEnabled = false
+                
+                passState = 0
+                
+                print("Pass State: \(passState)\n\n")
+                
+            case "Food Services":
+                
+                passState = 5
+                
+                print("Pass State: \(passState)\n\n")
+                
+            case "Acme":
+                
+                passState = 10
+                
+                print("Pass State: \(passState)\n\n")
+                
+            default:
+                break
+            }
             
         case 5:
             
@@ -165,6 +288,42 @@ class ViewController: UIViewController
                 
             })
             
+            switch entrantButton2.title(for: .normal)!
+            {
+            case "VIP":
+                makeTextFieldClear()
+                clearText()
+                birthdayText.isEnabled = false
+                dateOfVisitText.isEnabled = false
+                projectNumberText.isEnabled = false
+                firstNameText.isEnabled = false
+                lastNameText.isEnabled = false
+                companyText.isEnabled = false
+                streetAddressText.isEnabled = false
+                cityText.isEnabled = false
+                stateText.isEnabled = false
+                zipCodeText.isEnabled = false
+                
+                passState = 1
+                
+                print("Pass State: \(passState)\n\n")
+                
+            case "Ride Services":
+                
+                passState = 6
+                
+                print("Pass State: \(passState)\n\n")
+                
+            case "Orkin":
+                
+                passState = 11
+                
+                print("Pass State: \(passState)\n\n")
+                
+            default:
+                break
+            }
+            
         case 6:
             
             UIView.animate(withDuration: 0.0001, animations:{
@@ -178,6 +337,43 @@ class ViewController: UIViewController
                 self.entrantButton5.setTitleColor(UIColor.lightGray, for: .normal)
                 
             })
+            
+            switch entrantButton3.title(for: .normal)!
+            {
+            case "Child":
+                makeTextFieldClear()
+                clearText()
+                birthdayText.isEnabled = true
+                birthdayText.backgroundColor = UIColor.white
+                dateOfVisitText.isEnabled = false
+                projectNumberText.isEnabled = false
+                firstNameText.isEnabled = false
+                lastNameText.isEnabled = false
+                companyText.isEnabled = false
+                streetAddressText.isEnabled = false
+                cityText.isEnabled = false
+                stateText.isEnabled = false
+                zipCodeText.isEnabled = false
+                
+                passState = 2
+                
+                print("Pass State: \(passState)\n\n")
+                
+            case "Maintenance":
+                
+                passState = 7
+                
+                print("Pass State: \(passState)\n\n")
+                
+            case "Fedex":
+                
+                passState = 12
+                
+                print("Pass State: \(passState)\n\n")
+                
+            default:
+                break
+            }
             
         case 7:
             
@@ -193,6 +389,69 @@ class ViewController: UIViewController
                 
             })
             
+            switch entrantButton4.title(for: .normal)!
+            {
+            case "Season Pass":
+                makeTextFieldClear()
+                clearText()
+                birthdayText.isEnabled = false
+                dateOfVisitText.isEnabled = false
+                projectNumberText.isEnabled = false
+                firstNameText.isEnabled = true
+                lastNameText.isEnabled = true
+                companyText.isEnabled = false
+                streetAddressText.isEnabled = true
+                cityText.isEnabled = true
+                stateText.isEnabled = true
+                zipCodeText.isEnabled = true
+                
+                firstNameText.backgroundColor = UIColor.white
+                lastNameText.backgroundColor = UIColor.white
+                streetAddressText.backgroundColor = UIColor.white
+                cityText.backgroundColor = UIColor.white
+                stateText.backgroundColor = UIColor.white
+                zipCodeText.backgroundColor = UIColor.white
+                
+                passState = 3
+                
+                print("Pass State: \(passState)\n\n")
+                
+            case "Contract":
+                makeTextFieldClear()
+                clearText()
+                birthdayText.isEnabled = false
+                dateOfVisitText.isEnabled = false
+                projectNumberText.isEnabled = true
+                firstNameText.isEnabled = true
+                lastNameText.isEnabled = true
+                companyText.isEnabled = false
+                streetAddressText.isEnabled = true
+                cityText.isEnabled = true
+                stateText.isEnabled = true
+                zipCodeText.isEnabled = true
+                
+                firstNameText.backgroundColor = UIColor.white
+                lastNameText.backgroundColor = UIColor.white
+                streetAddressText.backgroundColor = UIColor.white
+                cityText.backgroundColor = UIColor.white
+                stateText.backgroundColor = UIColor.white
+                zipCodeText.backgroundColor = UIColor.white
+                projectNumberText.backgroundColor = UIColor.white
+                
+                passState = 8
+                
+                print("Pass State: \(passState)\n\n")
+                
+            case "NW Electrical":
+                
+                passState = 13
+                
+                print("Pass State: \(passState)\n\n")
+                
+            default:
+                break
+            }
+            
         case 8:
             
             UIView.animate(withDuration: 0.0001, animations:{
@@ -207,13 +466,114 @@ class ViewController: UIViewController
                 
             })
             
+            switch entrantButton5.title(for: .normal)!
+            {
+            case "Senior":
+                makeTextFieldClear()
+                clearText()
+                birthdayText.isEnabled = true
+                dateOfVisitText.isEnabled = false
+                projectNumberText.isEnabled = false
+                firstNameText.isEnabled = true
+                lastNameText.isEnabled = true
+                companyText.isEnabled = false
+                streetAddressText.isEnabled = false
+                cityText.isEnabled = false
+                stateText.isEnabled = false
+                zipCodeText.isEnabled = false
+                
+                birthdayText.backgroundColor = UIColor.white
+                firstNameText.backgroundColor = UIColor.white
+                lastNameText.backgroundColor = UIColor.white
+                
+                passState = 4
+                
+                print("Pass State: \(passState)\n\n")
+                
+            default:
+                break
+            }
+            
+        case 9:
+            
+            switch passState
+            {
+            case 0:
+                
+                print("Classic Guest\n")
+                
+                amusementPark.createGuest(guestType: .classic, firstName: firstNameText.text, lastName: lastNameText.text, streetAddress: streetAddressText.text, city: cityText.text, state: stateText.text, zipCode: Int(zipCodeText.text!), birthday: myBirthday.date(from: birthdayText.text!))
+                
+            case 1:
+                
+                print("VIP\n")
+                
+                amusementPark.createGuest(guestType: .vip, firstName: firstNameText.text, lastName: lastNameText.text, streetAddress: streetAddressText.text, city: cityText.text, state: stateText.text, zipCode: Int(zipCodeText.text!), birthday: myBirthday.date(from: birthdayText.text!))
+                
+            case 2:
+                
+                print("Child\n")
+                
+                amusementPark.createGuest(guestType: .freeChild, firstName: firstNameText.text, lastName: lastNameText.text, streetAddress: streetAddressText.text, city: cityText.text, state: stateText.text, zipCode: Int(zipCodeText.text!), birthday: myBirthday.date(from: birthdayText.text!))
+                
+            case 3:
+                
+                print("Season Pass\n")
+                
+                amusementPark.createGuest(guestType: .seasonPassGuest, firstName: firstNameText.text, lastName: lastNameText.text, streetAddress: streetAddressText.text, city: cityText.text, state: stateText.text, zipCode: Int(zipCodeText.text!), birthday: myBirthday.date(from: birthdayText.text!))
+                
+            case 4:
+                
+                print("Senior\n")
+                
+                amusementPark.createGuest(guestType: .seniorGuest, firstName: firstNameText.text, lastName: lastNameText.text, streetAddress: streetAddressText.text, city: cityText.text, state: stateText.text, zipCode: Int(zipCodeText.text!), birthday: myBirthday.date(from: birthdayText.text!))
+                
+            case 5:
+                
+                print("Food Services\n")
+                
+                amusementPark.createEmployee(employeeType: .foodServices, firstName: firstNameText.text, lastName: lastNameText.text, streetAddress: streetAddressText.text, city: cityText.text, state: stateText.text, zipCode: Int(zipCodeText.text!), birthday: myBirthday.date(from: birthdayText.text!), company: companyText.text, projectNumber: Int(projectNumberText.text!), dateOfVisit: myDateOfVisit.date(from: dateOfVisitText.text!))
+                
+            case 6:
+                
+                print("Ride Services\n")
+                
+                amusementPark.createEmployee(employeeType: .rideServices, firstName: firstNameText.text, lastName: lastNameText.text, streetAddress: streetAddressText.text, city: cityText.text, state: stateText.text, zipCode: Int(zipCodeText.text!), birthday: myBirthday.date(from: birthdayText.text!), company: companyText.text, projectNumber: Int(projectNumberText.text!), dateOfVisit: myDateOfVisit.date(from: dateOfVisitText.text!))
+                
+            case 7:
+                
+                print("Maintenance\n")
+                
+                amusementPark.createEmployee(employeeType: .maintenance, firstName: firstNameText.text, lastName: lastNameText.text, streetAddress: streetAddressText.text, city: cityText.text, state: stateText.text, zipCode: Int(zipCodeText.text!), birthday: myBirthday.date(from: birthdayText.text!), company: companyText.text, projectNumber: Int(projectNumberText.text!), dateOfVisit: myDateOfVisit.date(from: dateOfVisitText.text!))
+                
+            case 8:
+                
+                print("Contract\n")
+                
+                amusementPark.createEmployee(employeeType: .contract, firstName: firstNameText.text, lastName: lastNameText.text, streetAddress: streetAddressText.text, city: cityText.text, state: stateText.text, zipCode: Int(zipCodeText.text!), birthday: myBirthday.date(from: birthdayText.text!), company: companyText.text, projectNumber: Int(projectNumberText.text!), dateOfVisit: myDateOfVisit.date(from: dateOfVisitText.text!))
+                
+            case 9:
+                
+                print("Manager\n")
+                
+                amusementPark.createEmployee(employeeType: .manager, firstName: firstNameText.text, lastName: lastNameText.text, streetAddress: streetAddressText.text, city: cityText.text, state: stateText.text, zipCode: Int(zipCodeText.text!), birthday: myBirthday.date(from: birthdayText.text!), company: companyText.text, projectNumber: Int(projectNumberText.text!), dateOfVisit: myDateOfVisit.date(from: dateOfVisitText.text!))
+                
+            case 10, 11, 12, 13:
+                
+                print("Vendor\n")
+                
+                amusementPark.createEmployee(employeeType: .vendor, firstName: firstNameText.text, lastName: lastNameText.text, streetAddress: streetAddressText.text, city: cityText.text, state: stateText.text, zipCode: Int(zipCodeText.text!), birthday: myBirthday.date(from: birthdayText.text!), company: companyText.text, projectNumber: Int(projectNumberText.text!), dateOfVisit: myDateOfVisit.date(from: dateOfVisitText.text!))
+                
+            default:
+                break
+                
+            }
+            
         default:
             break
         }
         
     }
-    
-    var amusementPark = AmusementPark()
     
     override func viewDidLoad()
     {
@@ -225,85 +585,12 @@ class ViewController: UIViewController
         var myBool = false
         var discounts: (food: Int,merchandise: Int) = (0,0)
         
-        /**************************************************************************************************
-        Guest Test Case
+        myBirthday.dateFormat = "MM/DD/YYYY"
+        myDateOfVisit.dateFormat = "MM/DD/YYYY"
         
-        Create a free child guest that has no birthday. Returns an error
-        Create a free child guest that has a birthday but is not younger than 5. Returns an error
-        Create a free child guest
-        Create a classic guest
-        Create a vip guest
-        **************************************************************************************************/
-        
-        print("Guest Test Cases\n")
-        
-        print("Guest - Free Child Error\n")
-        
-        amusementPark.createGuest(guestType: .freeChild, firstName: nil, lastName: nil, streetAddress: nil, city: nil, state: nil, zipCode: 0, birthday: nil)
-        
-        print("\nGuest - Free Child Error\n")
-        
-        amusementPark.createGuest(guestType: .freeChild, firstName: nil, lastName: nil, streetAddress: nil, city: nil, state: nil, zipCode: 0, birthday: Date().addingTimeInterval(-157784761))
-        
-        print("\nGuest - Season Pass No First Name\n")
-        
-        amusementPark.createGuest(guestType: .seasonPassGuest, firstName: "", lastName: "", streetAddress: "", city: "", state: "", zipCode: 0, birthday: nil)
-        
-        print("\nGuest - Season Pass No Last Name\n")
-        
-        amusementPark.createGuest(guestType: .seasonPassGuest, firstName: "Alan", lastName: "", streetAddress: "", city: "", state: "", zipCode: 0, birthday: nil)
-        
-        print("\nGuest - Season Pass No Street Address\n")
-        
-        amusementPark.createGuest(guestType: .seasonPassGuest, firstName: "Alan", lastName: "Longcoy", streetAddress: "", city: "", state: "", zipCode: 0, birthday: nil)
-        
-        print("\nGuest - Season Pass No City\n")
-        
-        amusementPark.createGuest(guestType: .seasonPassGuest, firstName: "Alan", lastName: "Longcoy", streetAddress: "514 That Way St", city: "", state: "", zipCode: 0, birthday: nil)
-        
-        print("\nGuest - Season Pass No State\n")
-        
-        amusementPark.createGuest(guestType: .seasonPassGuest, firstName: "Alan", lastName: "Longcoy", streetAddress: "514 That Way St", city: "Lake Jackson", state: "", zipCode: 0, birthday: nil)
-        
-        print("\nGuest - Season Pass No ZIP code\n")
-        
-        amusementPark.createGuest(guestType: .seasonPassGuest, firstName: "Alan", lastName: "Longcoy", streetAddress: "514 That Way St", city: "Lake Jackson", state: "Texas", zipCode: 0, birthday: nil)
-        
-        print("\nGuest - Senior Guest No First Name\n")
-        
-        amusementPark.createGuest(guestType: .seniorGuest, firstName: "", lastName: "", streetAddress: "", city: "", state: "", zipCode: 0, birthday: nil)
-        
-        print("\nGuest - Senior Guest No Last Name\n")
-        
-        amusementPark.createGuest(guestType: .seniorGuest, firstName: "Alan", lastName: "", streetAddress: "", city: "", state: "", zipCode: 0, birthday: nil)
-        
-        print("\nGuest - Senior Guest Birthday Error\n")
-        
-        amusementPark.createGuest(guestType: .seniorGuest, firstName: "Alan", lastName: "Longcoy", streetAddress: "", city: "", state: "", zipCode: 0, birthday: nil)
-        
-        print("\nGuest - Senior Guest Birthday Error\n")
-        
-        amusementPark.createGuest(guestType: .seniorGuest, firstName: "Alan", lastName: "Longcoy", streetAddress: "", city: "", state: "", zipCode: 0, birthday: Date().addingTimeInterval(-2051201881))
-        
-        print("\nGuest - Free Child OK\n")
-        
-        amusementPark.createGuest(guestType: .freeChild, firstName: nil, lastName: nil, streetAddress: nil, city: nil, state: nil, zipCode: 0, birthday: Date().addingTimeInterval(-157784759))
-        
-        print("\nGuest - Classic OK\n")
-        
-        amusementPark.createGuest(guestType: .classic, firstName: nil, lastName: nil, streetAddress: nil, city: nil, state: nil, zipCode: 0, birthday: nil)
-        
-        print("\nGuest - VIP OK\n")
-        
-        amusementPark.createGuest(guestType: .vip, firstName: nil, lastName: nil, streetAddress: nil, city: nil, state: nil, zipCode: 0, birthday: nil)
-        
-        print("\nGuest - Season Pass OK\n")
-        
-        amusementPark.createGuest(guestType: .seasonPassGuest, firstName: "Alan", lastName: "Longcoy", streetAddress: "514 That Way St", city: "Lake Jackson", state: "Texas", zipCode: 77566, birthday: nil)
-        
-        print("\nGuest - Senior Guest OK\n")
-        
-        amusementPark.createGuest(guestType: .seniorGuest, firstName: "Alan", lastName: "Longcoy", streetAddress: "", city: "", state: "", zipCode: 0, birthday: Date().addingTimeInterval(-2051201879))
+        /*
+ 
+  
         
         /**************************************************************************************************
          Guest Test Case
@@ -708,6 +995,9 @@ class ViewController: UIViewController
             print("Discount for merchandise: \(discounts.merchandise)\n")
             
         }
+ 
+ */
+        
     }
 
     override func didReceiveMemoryWarning()
@@ -770,6 +1060,48 @@ class ViewController: UIViewController
         self.entrantButton3.setTitleColor(UIColor.lightGray, for: .normal)
         self.entrantButton4.setTitleColor(UIColor.lightGray, for: .normal)
         self.entrantButton5.setTitleColor(UIColor.lightGray, for: .normal)
+    }
+    
+    func makeTextFieldClear()
+    {
+        birthdayText.backgroundColor = UIColor.clear
+        dateOfVisitText.backgroundColor = UIColor.clear
+        projectNumberText.backgroundColor = UIColor.clear
+        firstNameText.backgroundColor = UIColor.clear
+        lastNameText.backgroundColor = UIColor.clear
+        companyText.backgroundColor = UIColor.clear
+        streetAddressText.backgroundColor = UIColor.clear
+        cityText.backgroundColor = UIColor.clear
+        stateText.backgroundColor = UIColor.clear
+        zipCodeText.backgroundColor = UIColor.clear
+    }
+    
+    func disableTextFields()
+    {
+        birthdayText.isEnabled = false
+        dateOfVisitText.isEnabled = false
+        projectNumberText.isEnabled = false
+        firstNameText.isEnabled = false
+        lastNameText.isEnabled = false
+        companyText.isEnabled = false
+        streetAddressText.isEnabled = false
+        cityText.isEnabled = false
+        stateText.isEnabled = false
+        zipCodeText.isEnabled = false
+    }
+    
+    func clearText()
+    {
+        birthdayText.text = nil
+        dateOfVisitText.text = nil
+        projectNumberText.text = nil
+        firstNameText.text = nil
+        lastNameText.text = nil
+        companyText.text = nil
+        streetAddressText.text = nil
+        cityText.text = nil
+        stateText.text = nil
+        zipCodeText.text = nil
     }
 
 }
