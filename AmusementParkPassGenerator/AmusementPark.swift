@@ -33,9 +33,9 @@ class AmusementPark
     
     init()
     {
-        guestsArray = []
-        employeeArray = []
-        passError = false
+        guestsArray = []    //Stores an array of guests and their information
+        employeeArray = []  //Stores an array of employees and their information
+        passError = false   //Identifies if the most recent attempt to generate a pass had errors
     }
     
     /**************************************************************************
@@ -406,10 +406,31 @@ class AmusementPark
         }
     }
     
+    /**************************************************************************
+     displayAlert
+     
+     This function will display an alert to the user.
+     
+     parameters:
+     alertTitle
+     alertMessage
+     
+     Returns:
+     None
+     
+     **************************************************************************/
+    
     func displayAlert(alertTitle: String, alertMessage: String)
     {
+        // Create alert controller
+        
         let alertController = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: UIAlertControllerStyle.alert)
+        
+        // Add an action to the alert controller called Dismiss
+        
         alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default,handler: nil))
+        
+        // Setup the view for the alert to be displayed to the user
         
         let alertWindow = UIWindow(frame: UIScreen.main.bounds)
         alertWindow.rootViewController = UIViewController()
@@ -419,22 +440,56 @@ class AmusementPark
         
     }
     
+    /**************************************************************************
+     getLastGuest
+     
+     This function will return the last guest created successfully.
+     
+     parameters:
+     None
+     
+     Returns:
+     Guest
+     
+     **************************************************************************/
+    
     func getLastGuest() -> Guest?
     {
+        // Check to see if there is a guest to return
+        
         if guestsArray.count > 0
         {
             return guestsArray[guestsArray.count-1]
         }
         
+        // If there is no guest return nil
+        
         return nil
     }
     
+    /**************************************************************************
+     getLastEmployee
+     
+     This function will return the last employee created successfully.
+     
+     parameters:
+     None
+     
+     Returns:
+     Guest
+     
+     **************************************************************************/
+    
     func getLastEmployee() -> Employee?
     {
+        // Check to see if there is a employee to return
+        
         if employeeArray.count > 0
         {
             return employeeArray[employeeArray.count-1]
         }
+        
+        // If there is no employee return nil
         
         return nil
     }

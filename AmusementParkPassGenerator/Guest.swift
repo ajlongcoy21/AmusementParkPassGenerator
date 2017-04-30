@@ -230,8 +230,6 @@ class Guest: Person
                 break
         }
         
-        
-        
         // Call default initializer
         
         self.init(firstName: firstName, lastName: lastName, streetAddress: streetAddress, city: city, state: state, zipCode: zipCode, birthday: birthday, company: nil, guestType: guestType)
