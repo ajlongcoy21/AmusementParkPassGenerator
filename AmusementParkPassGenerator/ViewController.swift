@@ -13,6 +13,7 @@ class ViewController: UIViewController
 
     var amusementPark = AmusementPark()
     var passState: Int = 0
+    var myError = false
     var myBirthday = DateFormatter()
     var myDateOfVisit = DateFormatter()
     
@@ -575,6 +576,29 @@ class ViewController: UIViewController
         
     }
     
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool
+    {
+        if !amusementPark.passError
+        {
+            return true
+        }
+        else
+        {
+            return false
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
+    {
+        
+        let destinationVC = segue.destination as! PassVerificationViewController
+        
+        destinationVC.passState = passState
+        destinationVC.guest = amusementPark.getLastGuest()
+        destinationVC.employee = amusementPark.getLastEmployee()
+        
+    }
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -582,8 +606,8 @@ class ViewController: UIViewController
 
         defaultSettings()
         
-        var myBool = false
-        var discounts: (food: Int,merchandise: Int) = (0,0)
+        //var myBool = false
+        //var discounts: (food: Int,merchandise: Int) = (0,0)
         
         myBirthday.dateFormat = "MM/DD/YYYY"
         myDateOfVisit.dateFormat = "MM/DD/YYYY"

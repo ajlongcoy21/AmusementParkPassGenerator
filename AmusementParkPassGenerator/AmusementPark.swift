@@ -15,6 +15,7 @@ class AmusementPark
     
     var guestsArray: [Guest]
     var employeeArray: [Employee]
+    var passError: Bool
     
     /**************************************************************************
      init
@@ -34,6 +35,7 @@ class AmusementPark
     {
         guestsArray = []
         employeeArray = []
+        passError = false
     }
     
     /**************************************************************************
@@ -62,46 +64,58 @@ class AmusementPark
             
             guestsArray.append(newGuest!)
             
+            passError = false
+            
         }
         catch GuestError.noBirthdate(let description)
         {
             displayAlert(alertTitle: "Guest Pass Error", alertMessage: description)
+            passError = true
         }
         catch GuestError.invalidGuestType(let description)
         {
             displayAlert(alertTitle: "Guest Pass Error", alertMessage: description)
+            passError = true
         }
         catch GuestError.invalidBirthdate(let description)
         {
             displayAlert(alertTitle: "Guest Pass Error", alertMessage: description)
+            passError = true
         }
         catch GuestError.invalidZipCode(let description)
         {
             displayAlert(alertTitle: "Guest Pass Error", alertMessage: description)
+            passError = true
         }
         catch GuestError.noCity(let description)
         {
             displayAlert(alertTitle: "Guest Pass Error", alertMessage: description)
+            passError = true
         }
         catch GuestError.noFirstName(let description)
         {
             displayAlert(alertTitle: "Guest Pass Error", alertMessage: description)
+            passError = true
         }
         catch GuestError.noLastName(let description)
         {
             displayAlert(alertTitle: "Guest Pass Error", alertMessage: description)
+            passError = true
         }
         catch GuestError.noState(let description)
         {
             displayAlert(alertTitle: "Guest Pass Error", alertMessage: description)
+            passError = true
         }
         catch GuestError.noStreetAddress(let description)
         {
             displayAlert(alertTitle: "Guest Pass Error", alertMessage: description)
+            passError = true
         }
         catch let error
         {
             displayAlert(alertTitle: "Guest Pass Error", alertMessage: "\(error)")
+            passError = true
         }
     }
     
@@ -137,66 +151,82 @@ class AmusementPark
             let newEmployee = try Employee(employeeType: employeeType, firstName: firstName, lastName: lastName, streetAddress: streetAddress, city: city, state: state, zipCode: zipCode, birthday: birthday, company: company, projectNumber: projectNumber, dateOfVisit: dateOfVisit)
             
             employeeArray.append(newEmployee!)
+            passError = false
         }
         catch EmployeeError.invalidBirthdate(let description)
         {
             displayAlert(alertTitle: "Employee Pass Error", alertMessage: description)
+            passError = true
         }
         catch EmployeeError.invalidCompany(let description)
         {
             displayAlert(alertTitle: "Employee Pass Error", alertMessage: description)
+            passError = true
         }
         catch EmployeeError.invalidDateOfVisit(let description)
         {
             displayAlert(alertTitle: "Employee Pass Error", alertMessage: description)
+            passError = true
         }
         catch EmployeeError.invalidEmployeeType(let description)
         {
             displayAlert(alertTitle: "Employee Pass Error", alertMessage: description)
+            passError = true
         }
         catch EmployeeError.invalidProjectNumber(let description)
         {
             displayAlert(alertTitle: "Employee Pass Error", alertMessage: description)
+            passError = true
         }
         catch EmployeeError.invalidZipCode(let description)
         {
             displayAlert(alertTitle: "Employee Pass Error", alertMessage: description)
+            passError = true
         }
         catch EmployeeError.noBirthdate(let description)
         {
             displayAlert(alertTitle: "Employee Pass Error", alertMessage: description)
+            passError = true
         }
         catch EmployeeError.noCity(let description)
         {
             displayAlert(alertTitle: "Employee Pass Error", alertMessage: description)
+            passError = true
         }
         catch EmployeeError.noDateOfVisit(let description)
         {
             displayAlert(alertTitle: "Employee Pass Error", alertMessage: description)
+            passError = true
         }
         catch EmployeeError.noFirstName(let description)
         {
             displayAlert(alertTitle: "Employee Pass Error", alertMessage: description)
+            passError = true
         }
         catch EmployeeError.noLastName(let description)
         {
             displayAlert(alertTitle: "Employee Pass Error", alertMessage: description)
+            passError = true
         }
         catch EmployeeError.noState(let description)
         {
             displayAlert(alertTitle: "Employee Pass Error", alertMessage: description)
+            passError = true
         }
         catch EmployeeError.noStreetAddress(let description)
         {
             displayAlert(alertTitle: "Employee Pass Error", alertMessage: description)
+            passError = true
         }
         catch EmployeeError.noZipCode(let description)
         {
             displayAlert(alertTitle: "Employee Pass Error", alertMessage: description)
+            passError = true
         }
         catch let error
         {
             print(error)
+            passError = true
         }
     }
     
@@ -389,5 +419,24 @@ class AmusementPark
         
     }
     
+    func getLastGuest() -> Guest?
+    {
+        if guestsArray.count > 0
+        {
+            return guestsArray[guestsArray.count-1]
+        }
+        
+        return nil
+    }
+    
+    func getLastEmployee() -> Employee?
+    {
+        if employeeArray.count > 0
+        {
+            return employeeArray[employeeArray.count-1]
+        }
+        
+        return nil
+    }
 }
 
