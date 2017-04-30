@@ -11,11 +11,19 @@ import UIKit
 class ViewController: UIViewController
 {
 
+    let date = Date()
+    let calendar = Calendar.current
+    
+    var year: Int = 0
+    var month: Int = 0
+    var day: Int = 0
+    
     var amusementPark = AmusementPark()
     var passState: Int = 0
     var myError = false
     var myBirthday = DateFormatter()
     var myDateOfVisit = DateFormatter()
+    
     
     @IBOutlet weak var guestButton: UIButton!
     @IBOutlet weak var employeeButton: UIButton!
@@ -569,6 +577,92 @@ class ViewController: UIViewController
                 break
                 
             }
+        
+        case 10:
+            
+            switch passState
+            {
+                
+            case 2:
+                
+                print("Child\n")
+                
+                birthdayText.text = "\(month)/\(day)/\(year-4)"
+                
+            case 4:
+                
+                print("Senior\n")
+                
+                birthdayText.text = "\(month)/\(day)/\(year-66)"
+                firstNameText.text = "John"
+                lastNameText.text = "Smith"
+                
+            case 3, 5, 6, 7, 9:
+                
+                print("Food Services\n")
+                
+                firstNameText.text = "John"
+                lastNameText.text = "Smith"
+                streetAddressText.text = "1234 Street Address"
+                cityText.text = "Concord"
+                stateText.text = "NH"
+                zipCodeText.text = "12345"
+                
+            case 8:
+                
+                print("Contract\n")
+                
+                firstNameText.text = "John"
+                lastNameText.text = "Smith"
+                streetAddressText.text = "1234 Street Address"
+                cityText.text = "Concord"
+                stateText.text = "NH"
+                zipCodeText.text = "12345"
+                projectNumberText.text = "1001"
+                
+            case 10:
+                
+                print("Vendor\n")
+                
+                birthdayText.text = "\(month)/\(day)/\(year-20)"
+                dateOfVisitText.text = "\(month)/\(day)/\(year)"
+                firstNameText.text = "John"
+                lastNameText.text = "Smith"
+                companyText.text = "Acme"
+                
+            case 11:
+                
+                print("Vendor\n")
+                
+                birthdayText.text = "\(month)/\(day)/\(year-20)"
+                dateOfVisitText.text = "\(month)/\(day)/\(year)"
+                firstNameText.text = "John"
+                lastNameText.text = "Smith"
+                companyText.text = "Orkin"
+                
+            case 12:
+                
+                print("Vendor\n")
+                
+                birthdayText.text = "\(month)/\(day)/\(year-20)"
+                dateOfVisitText.text = "\(month)/\(day)/\(year)"
+                firstNameText.text = "John"
+                lastNameText.text = "Smith"
+                companyText.text = "Fedex"
+                
+            case 13:
+                
+                print("Vendor\n")
+                
+                birthdayText.text = "\(month)/\(day)/\(year-20)"
+                dateOfVisitText.text = "\(month)/\(day)/\(year)"
+                firstNameText.text = "John"
+                lastNameText.text = "Smith"
+                companyText.text = "NW Electrical"
+            
+            default:
+                break
+            }
             
         default:
             break
@@ -594,6 +688,7 @@ class ViewController: UIViewController
         let destinationVC = segue.destination as! PassVerificationViewController
         
         destinationVC.passState = passState
+        destinationVC.amusementPark = amusementPark
         destinationVC.guest = amusementPark.getLastGuest()
         destinationVC.employee = amusementPark.getLastEmployee()
         
@@ -611,6 +706,10 @@ class ViewController: UIViewController
         
         myBirthday.dateFormat = "MM/DD/YYYY"
         myDateOfVisit.dateFormat = "MM/DD/YYYY"
+        
+        year = calendar.component(.year, from: date)
+        month = calendar.component(.month, from: date)
+        day = calendar.component(.day, from: date)
         
         /*
  

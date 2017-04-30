@@ -219,7 +219,7 @@ class Guest: Person
                 {
                     let seniorBirthday = birthday!.addingTimeInterval(2051201880) // Add 65 years to birthday
                     
-                    if seniorBirthday < Date()
+                    if seniorBirthday > Date()
                     {
                         throw GuestError.invalidGuestType(description: "Invalid Birthday. Needs to be 65 years of age or older.")
                     }

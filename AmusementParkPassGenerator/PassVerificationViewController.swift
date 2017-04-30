@@ -17,8 +17,10 @@ class PassVerificationViewController: UIViewController
     @IBOutlet weak var entrantDiscount1: UITextField!
     @IBOutlet weak var entrantDiscount2: UITextField!
     @IBOutlet weak var entrantDiscount3: UITextField!
+    @IBOutlet weak var testResults: UILabel!
     
     var passState: Int?
+    var amusementPark: AmusementPark?
     var guest: Guest?
     var employee: Employee?
     
@@ -82,6 +84,90 @@ class PassVerificationViewController: UIViewController
         
     }
     
+    @IBAction func swipeTest(_ sender: UIButton)
+    {
+        
+        switch sender.tag
+        {
+            case 1:
+                if passState! >= 0 && passState! <= 4
+                {
+                    updateResultLabel(access: (amusementPark?.accessSwipePass(for: guest, at: AreaAccess.amusementArea, at: nil))!)
+                    
+                    testResults.text = testResults.text! + "\n\n\(guest!.pass.discountFood) % food discount"
+                    testResults.text = testResults.text! + "\n\(guest!.pass.discountMerchandise) % merchandise discount"
+                }
+                if passState! >= 4 && passState! <= 13
+                {
+                    updateResultLabel(access: (amusementPark?.accessSwipePass(for: employee, at: AreaAccess.amusementArea, at: nil))!)
+                    
+                    testResults.text = testResults.text! + "\n\n\(employee!.pass.discountFood) % food discount"
+                    testResults.text = testResults.text! + "\n\(employee!.pass.discountMerchandise) % merchandise discount"
+                }
+            
+            
+            case 2:
+                if passState! >= 0 && passState! <= 4
+                {
+                    updateResultLabel(access: (amusementPark?.accessSwipePass(for: guest, at: nil, at: RideAccess.allRides))!)
+                }
+                if passState! >= 4 && passState! <= 13
+                {
+                    updateResultLabel(access: (amusementPark?.accessSwipePass(for: employee, at: nil, at: RideAccess.allRides))!)
+                }
+            case 3:
+                if passState! >= 0 && passState! <= 4
+                {
+                    updateResultLabel(access: (amusementPark?.accessSwipePass(for: guest, at: nil, at: RideAccess.skipLines))!)
+                }
+                if passState! >= 4 && passState! <= 13
+                {
+                    updateResultLabel(access: (amusementPark?.accessSwipePass(for: employee, at: nil, at: RideAccess.skipLines))!)
+                }
+            case 4:
+                if passState! >= 0 && passState! <= 4
+                {
+                    updateResultLabel(access: (amusementPark?.accessSwipePass(for: guest, at: AreaAccess.kitchenArea, at: nil))!)
+                }
+                if passState! >= 4 && passState! <= 13
+                {
+                    updateResultLabel(access: (amusementPark?.accessSwipePass(for: employee, at: AreaAccess.kitchenArea, at: nil))!)
+                }
+            case 5:
+                if passState! >= 0 && passState! <= 4
+                {
+                    updateResultLabel(access: (amusementPark?.accessSwipePass(for: guest, at: AreaAccess.officeArea, at: nil))!)
+                }
+                if passState! >= 4 && passState! <= 13
+                {
+                    updateResultLabel(access: (amusementPark?.accessSwipePass(for: employee, at: AreaAccess.officeArea, at: nil))!)
+                }
+            case 6:
+                if passState! >= 0 && passState! <= 4
+                {
+                    updateResultLabel(access: (amusementPark?.accessSwipePass(for: guest, at: AreaAccess.maintenanceArea, at: nil))!)
+                }
+                if passState! >= 4 && passState! <= 13
+                {
+                    updateResultLabel(access: (amusementPark?.accessSwipePass(for: employee, at: AreaAccess.maintenanceArea, at: nil))!)
+                }
+            case 7:
+                if passState! >= 0 && passState! <= 4
+                {
+                    updateResultLabel(access: (amusementPark?.accessSwipePass(for: guest, at: AreaAccess.rideControlArea, at: nil))!)
+                }
+                if passState! >= 4 && passState! <= 13
+                {
+                    updateResultLabel(access: (amusementPark?.accessSwipePass(for: employee, at: AreaAccess.rideControlArea, at: nil))!)
+                }
+            
+            default:
+                break
+            
+        }
+        
+    }
+    
     func updateDiscountLabels(for entrant: Optional<Any>)
     {
         switch entrant // Look to see what type of entrant the pass is for
@@ -93,7 +179,16 @@ class PassVerificationViewController: UIViewController
             entrantDiscount3.text = "\(guest!.pass.discountMerchandise) % Merchandise Discount"
         case is Employee:
             entrantName.text = employee!.firstName! + " " + employee!.lastName!
-            entrantDiscount1.text = "\(employee!.pass.rideAccessArray[0])"
+            
+            if employee!.pass.rideAccessArray.count > 0
+            {
+                entrantDiscount1.text = "\(employee!.pass.rideAccessArray[0])"
+            }
+            else
+            {
+                entrantDiscount1.text = ""
+            }
+            
             entrantDiscount2.text = "\(employee!.pass.discountFood) % Food Discount"
             entrantDiscount3.text = "\(employee!.pass.discountMerchandise) % Merchandise Discount"
         default:
@@ -101,10 +196,38 @@ class PassVerificationViewController: UIViewController
         }
     }
     
+    func updateResultLabel(access: Bool)
+    {
+        if access
+        {
+            testResults.text = "GRANTED"
+            testResults.backgroundColor = UIColor.green
+        }
+        else
+        {
+            testResults.text = "DENIED"
+            testResults.backgroundColor = UIColor.red
+            displayAlert(alertTitle: "ACCESS DENIED", alertMessage: "Entrant was denied access.")
+        }
+    }
+    
     override func didReceiveMemoryWarning()
     {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func displayAlert(alertTitle: String, alertMessage: String)
+    {
+        let alertController = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: UIAlertControllerStyle.alert)
+        alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default,handler: nil))
+        
+        let alertWindow = UIWindow(frame: UIScreen.main.bounds)
+        alertWindow.rootViewController = UIViewController()
+        alertWindow.windowLevel = UIWindowLevelAlert + 1;
+        alertWindow.makeKeyAndVisible()
+        alertWindow.rootViewController?.present(alertController, animated: true, completion: nil)
+        
     }
 }
 
