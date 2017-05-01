@@ -269,6 +269,24 @@ class ViewController: UIViewController
                 
             case "Food Services":
                 
+                self.disableTextFields()
+                self.makeTextFieldClear()
+                self.clearText()
+                
+                firstNameText.isEnabled = true
+                lastNameText.isEnabled = true
+                streetAddressText.isEnabled = true
+                cityText.isEnabled = true
+                stateText.isEnabled = true
+                zipCodeText.isEnabled = true
+                
+                firstNameText.backgroundColor = UIColor.white
+                lastNameText.backgroundColor = UIColor.white
+                streetAddressText.backgroundColor = UIColor.white
+                cityText.backgroundColor = UIColor.white
+                stateText.backgroundColor = UIColor.white
+                zipCodeText.backgroundColor = UIColor.white
+                
                 passState = 5
                 
                 print("Pass State: \(passState)\n\n")
@@ -318,6 +336,24 @@ class ViewController: UIViewController
                 print("Pass State: \(passState)\n\n")
                 
             case "Ride Services":
+                
+                self.disableTextFields()
+                self.makeTextFieldClear()
+                self.clearText()
+                
+                firstNameText.isEnabled = true
+                lastNameText.isEnabled = true
+                streetAddressText.isEnabled = true
+                cityText.isEnabled = true
+                stateText.isEnabled = true
+                zipCodeText.isEnabled = true
+                
+                firstNameText.backgroundColor = UIColor.white
+                lastNameText.backgroundColor = UIColor.white
+                streetAddressText.backgroundColor = UIColor.white
+                cityText.backgroundColor = UIColor.white
+                stateText.backgroundColor = UIColor.white
+                zipCodeText.backgroundColor = UIColor.white
                 
                 passState = 6
                 
@@ -369,6 +405,24 @@ class ViewController: UIViewController
                 print("Pass State: \(passState)\n\n")
                 
             case "Maintenance":
+                
+                self.disableTextFields()
+                self.makeTextFieldClear()
+                self.clearText()
+                
+                firstNameText.isEnabled = true
+                lastNameText.isEnabled = true
+                streetAddressText.isEnabled = true
+                cityText.isEnabled = true
+                stateText.isEnabled = true
+                zipCodeText.isEnabled = true
+                
+                firstNameText.backgroundColor = UIColor.white
+                lastNameText.backgroundColor = UIColor.white
+                streetAddressText.backgroundColor = UIColor.white
+                cityText.backgroundColor = UIColor.white
+                stateText.backgroundColor = UIColor.white
+                zipCodeText.backgroundColor = UIColor.white
                 
                 passState = 7
                 
@@ -672,6 +726,8 @@ class ViewController: UIViewController
     
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool
     {
+        // If there is an error when trying to create a new pass, do not show the new view
+        
         if !amusementPark.passError
         {
             return true
@@ -684,8 +740,11 @@ class ViewController: UIViewController
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
+        // prepare the new view controller to receive data
         
         let destinationVC = segue.destination as! PassVerificationViewController
+        
+        // set the data for the new view controller
         
         destinationVC.passState = passState
         destinationVC.amusementPark = amusementPark
@@ -701,11 +760,12 @@ class ViewController: UIViewController
 
         defaultSettings()
         
-        //var myBool = false
-        //var discounts: (food: Int,merchandise: Int) = (0,0)
+        // Setup the formats for the birthday and date of visits fields
         
         myBirthday.dateFormat = "MM/DD/YYYY"
         myDateOfVisit.dateFormat = "MM/DD/YYYY"
+        
+        // Get the current year, month, and day for the populate data fields
         
         year = calendar.component(.year, from: date)
         month = calendar.component(.month, from: date)
@@ -718,6 +778,19 @@ class ViewController: UIViewController
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    /**************************************************************************
+     defaultSettings
+     
+     This function setups the default settings for the UI buttons
+     
+     parameters:
+     None
+     
+     Returns:
+     None
+     
+     **************************************************************************/
     
     func defaultSettings()
     {
@@ -738,6 +811,19 @@ class ViewController: UIViewController
         entrantButton5.setTitleColor(UIColor.lightGray, for: .normal)
     }
     
+    /**************************************************************************
+     enableButtons
+     
+     This function makes the buttons enabled being used in the UI
+     
+     parameters:
+     None
+     
+     Returns:
+     None
+     
+     **************************************************************************/
+    
     func enableButtons()
     {
         entrantButton1.isEnabled = true
@@ -746,6 +832,19 @@ class ViewController: UIViewController
         entrantButton4.isEnabled = true
         entrantButton5.isEnabled = true
     }
+    
+    /**************************************************************************
+     unhideButtons
+     
+     This function makes the buttons unhidden being used in the UI
+     
+     parameters:
+     None
+     
+     Returns:
+     None
+     
+     **************************************************************************/
     
     func unhideButtons()
     {
@@ -756,6 +855,18 @@ class ViewController: UIViewController
         entrantButton5.isHidden = false
     }
     
+    /**************************************************************************
+     hideButtons
+     
+     This function makes the buttons hidden not being used in the UI
+     
+     parameters:
+     None
+     
+     Returns:
+     None
+     
+     **************************************************************************/
     
     func hideButtons()
     {
@@ -766,6 +877,19 @@ class ViewController: UIViewController
         entrantButton5.isHidden = true
     }
     
+    /**************************************************************************
+     makeButtonsGray
+     
+     This function makes the buttons gray not being used in the UI
+     
+     parameters:
+     None
+     
+     Returns:
+     None
+     
+     **************************************************************************/
+    
     func makeButtonsGray()
     {
         self.entrantButton1.setTitleColor(UIColor.lightGray, for: .normal)
@@ -774,6 +898,19 @@ class ViewController: UIViewController
         self.entrantButton4.setTitleColor(UIColor.lightGray, for: .normal)
         self.entrantButton5.setTitleColor(UIColor.lightGray, for: .normal)
     }
+    
+    /**************************************************************************
+     makeTextFieldClear
+     
+     This function makes the text fields of the UI clear of text
+     
+     parameters:
+     None
+     
+     Returns:
+     None
+     
+     **************************************************************************/
     
     func makeTextFieldClear()
     {
@@ -789,6 +926,19 @@ class ViewController: UIViewController
         zipCodeText.backgroundColor = UIColor.clear
     }
     
+    /**************************************************************************
+     disableTextFields
+     
+     This function disables the text fields of the UI
+     
+     parameters:
+     None
+     
+     Returns:
+     None
+     
+     **************************************************************************/
+    
     func disableTextFields()
     {
         birthdayText.isEnabled = false
@@ -802,6 +952,19 @@ class ViewController: UIViewController
         stateText.isEnabled = false
         zipCodeText.isEnabled = false
     }
+    
+    /**************************************************************************
+     clearText
+     
+     This function clears the text in the text fields of the UI
+     
+     parameters:
+     None
+     
+     Returns:
+     None
+     
+     **************************************************************************/
     
     func clearText()
     {
